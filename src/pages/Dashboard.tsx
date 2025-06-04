@@ -77,7 +77,7 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen flex flex-col bg-gray-50">
         <MobileHeader />
-        <div className="flex-1 p-4 sm:p-6 lg:p-8">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6 lg:mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -97,7 +97,9 @@ const Dashboard = () => {
                   imagePreview={imagePreview}
                 />
                 {restoreState === 'ready' && (
-                  <RestoreButton onRestore={handleRestore} />
+                  <div className="mb-6">
+                    <RestoreButton onRestore={handleRestore} />
+                  </div>
                 )}
               </>
             ) : restoreState === 'loading' ? (
@@ -105,7 +107,7 @@ const Dashboard = () => {
                 <LoadingSpinner />
               </div>
             ) : restoreState === 'comparing' ? (
-              <div className="space-y-6">
+              <div className="space-y-6 mb-6">
                 <RestoreSlider 
                   originalImage={imagePreview!}
                   restoredImage={restoredImage!}
@@ -120,7 +122,7 @@ const Dashboard = () => {
                 </div>
               </div>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-6 mb-6">
                 <SuccessResult 
                   restoredImage={restoredImage!}
                   onDownload={handleDownload}
