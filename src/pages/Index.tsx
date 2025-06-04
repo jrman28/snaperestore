@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -24,10 +23,21 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <div 
+      className="min-h-screen relative"
+      style={{
+        backgroundColor: '#faf9ff',
+        backgroundImage: `
+          radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.15) 1px, transparent 0),
+          radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.1) 1px, transparent 0)
+        `,
+        backgroundSize: '24px 24px, 48px 48px',
+        backgroundPosition: '0 0, 12px 12px'
+      }}
+    >
       <Header onSignInClick={handleSignInClick} onSignUpClick={handleSignUpClick} />
       
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Left Column - Hero Content */}
           <div className="space-y-8">
@@ -74,7 +84,7 @@ const Index = () => {
       </div>
       
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-20">
+      <footer className="bg-white/90 backdrop-blur-sm border-t border-gray-200 mt-20 relative z-10">
         <div className="container mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-600 text-sm">
