@@ -8,6 +8,8 @@ import { RestoreButton } from '@/components/RestoreButton';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { RestoreSlider } from '@/components/RestoreSlider';
 import { SuccessResult } from '@/components/SuccessResult';
+import { MobileNav } from '@/components/MobileNav';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type RestoreState = 'upload' | 'ready' | 'loading' | 'comparing' | 'complete';
 
@@ -16,6 +18,7 @@ const Dashboard = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [restoredImage, setRestoredImage] = useState<string | null>(null);
   const [restoreState, setRestoreState] = useState<RestoreState>('upload');
+  const isMobile = useIsMobile();
 
   const handleImageSelect = (file: File, imageUrl: string) => {
     setSelectedFile(file);
@@ -68,6 +71,76 @@ const Dashboard = () => {
     setRestoredImage(null);
     setRestoreState('upload');
   };
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen flex flex-col bg-gray-50">
+        <DashboardHeader />
+        <div className="flex-1 p-4 sm:p-6 lg:p-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-6 lg:mb-8">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                Restore Your <span className="text-purple-600">Memories</span>
+              </h1>
+              <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+                Transform your old, damaged photos into stunning restored memories with 
+                our AI-powered restoration technology.
+              </p>
+            </div>
+
+            {restoreState === 'upload' || restoreState === 'ready' ? (
+              <>
+                <PhotoUpload 
+                  onImageSelect={handleImageSelect}
+                  selectedFile={selectedFile}
+                  imagePreview={imagePreview}
+                />
+                {restoreState === 'ready' && (
+                  <RestoreButton onRestore={handleRestore} />
+                )}
+              </>
+            ) : restoreState === 'loading' ? (
+              <div className="bg-white rounded-lg border border-gray-200 p-8 lg:p-12 shadow-sm">
+                <LoadingSpinner />
+              </div>
+            ) : restoreState === 'comparing' ? (
+              <div className="space-y-6">
+                <RestoreSlider 
+                  originalImage={imagePreview!}
+                  restoredImage={restoredImage!}
+                />
+                <div className="text-center">
+                  <button
+                    onClick={handleViewResult}
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-6 lg:px-8 py-2 lg:py-3 rounded-lg font-medium text-sm lg:text-base"
+                  >
+                    View Final Result
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <SuccessResult 
+                  restoredImage={restoredImage!}
+                  onDownload={handleDownload}
+                  onShare={handleShare}
+                />
+                <div className="text-center">
+                  <button
+                    onClick={handleStartOver}
+                    className="text-purple-600 hover:text-purple-700 font-medium"
+                  >
+                    Restore Another Photo
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <MobileNav />
+      </div>
+    );
+  }
 
   return (
     <SidebarProvider>

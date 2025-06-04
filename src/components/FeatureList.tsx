@@ -25,8 +25,8 @@ const FeatureList = () => {
     <div className="space-y-4">
       {features.map((feature, index) => (
         <div key={index} className="flex items-center space-x-3">
-          <div className={`w-2 h-2 rounded-full ${feature.color.replace('text-', 'bg-')}`}></div>
-          <span className="text-gray-700">{feature.title}</span>
+          <div className={`w-2 h-2 rounded-full ${feature.color.replace('text-', 'bg-')} flex-shrink-0`}></div>
+          <span className="text-gray-700 text-sm sm:text-base">{feature.title}</span>
         </div>
       ))}
     </div>

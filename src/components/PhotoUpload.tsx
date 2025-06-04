@@ -56,22 +56,22 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
 
   if (imagePreview) {
     return (
-      <Card className="max-w-2xl mx-auto p-6">
+      <Card className="max-w-2xl mx-auto p-4 sm:p-6 shadow-md">
         <div className="relative">
           <img
             src={imagePreview}
             alt="Selected photo"
-            className="w-full h-96 object-cover rounded-lg"
+            className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
           />
-          <div className="absolute top-4 right-4 flex space-x-2">
+          <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
             <Button
               onClick={handleReplaceImage}
               variant="secondary"
               size="sm"
-              className="bg-white/90 hover:bg-white"
+              className="bg-white/90 hover:bg-white text-xs sm:text-sm"
             >
-              <Upload size={16} className="mr-1" />
-              Replace Image
+              <Upload size={14} className="mr-1" />
+              Replace
             </Button>
             <Button
               onClick={handleRemoveImage}
@@ -79,16 +79,16 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
               size="sm"
               className="bg-white/90 hover:bg-white"
             >
-              <X size={16} />
+              <X size={14} />
             </Button>
           </div>
         </div>
         
-        <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-          <p className="text-green-800 font-medium">
+        <div className="mt-4 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg">
+          <p className="text-green-800 font-medium text-sm sm:text-base truncate">
             {selectedFile?.name}
           </p>
-          <p className="text-green-600 text-sm">
+          <p className="text-green-600 text-xs sm:text-sm">
             Ready to restore! Click the restore button below.
           </p>
         </div>
@@ -105,10 +105,10 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
   }
 
   return (
-    <Card className="max-w-2xl mx-auto p-12">
+    <Card className="max-w-2xl mx-auto p-6 sm:p-8 lg:p-12 shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div
         className={`
-          border-2 border-dashed rounded-lg p-12 text-center transition-colors
+          border-2 border-dashed rounded-lg p-6 sm:p-8 lg:p-12 text-center transition-colors
           ${dragActive ? 'border-purple-400 bg-purple-50' : 'border-gray-300'}
         `}
         onDragEnter={handleDrag}
@@ -116,16 +116,16 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
         onDragOver={handleDrag}
         onDrop={handleDrop}
       >
-        <div className="flex flex-col items-center space-y-6">
-          <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center">
-            <Camera className="w-8 h-8 text-purple-600" />
+        <div className="flex flex-col items-center space-y-4 lg:space-y-6">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-lg flex items-center justify-center">
+            <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
           </div>
           
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-gray-900">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
               Upload Your Photo
             </h3>
-            <p className="text-gray-600 max-w-md">
+            <p className="text-sm sm:text-base text-gray-600 max-w-md px-4">
               Drag and drop your image here, or click to browse. We'll restore it to its former glory.
             </p>
           </div>
@@ -140,7 +140,7 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
           
           <Button 
             asChild
-            className="bg-purple-600 hover:bg-purple-700 px-8 py-3"
+            className="bg-purple-600 hover:bg-purple-700 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base"
           >
             <label htmlFor="photo-upload" className="cursor-pointer flex items-center space-x-2">
               <Upload size={16} />
@@ -148,7 +148,7 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
             </label>
           </Button>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-xs sm:text-sm text-gray-500">
             Supports JPG, PNG, and other common image formats
           </p>
         </div>

@@ -20,8 +20,8 @@ export function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-          <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
+        <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0">
+          <div className="w-full h-full bg-purple-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
             SJ
           </div>
         </Button>
