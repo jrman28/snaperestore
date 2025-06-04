@@ -56,7 +56,7 @@ export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: Photo
 
   if (imagePreview) {
     return (
-      <Card className="max-w-2xl mx-auto p-4 sm:p-6 shadow-md">
+      <Card className="max-w-2xl mx-auto p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <div className="relative">
           <img
             src={imagePreview}

@@ -11,6 +11,8 @@ import { RestoreSlider } from '@/components/RestoreSlider';
 import { SuccessResult } from '@/components/SuccessResult';
 import { MobileNav } from '@/components/MobileNav';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Button } from '@/components/ui/button';
+import { RotateCcw, Sparkles } from 'lucide-react';
 
 type RestoreState = 'upload' | 'ready' | 'loading' | 'comparing' | 'complete';
 
@@ -103,7 +105,7 @@ const Dashboard = () => {
                 )}
               </>
             ) : restoreState === 'loading' ? (
-              <div className="bg-white rounded-lg border border-gray-200 p-8 lg:p-12 shadow-sm">
+              <div className="bg-white rounded-lg border border-gray-200 p-8 lg:p-12 shadow-lg">
                 <LoadingSpinner />
               </div>
             ) : restoreState === 'comparing' ? (
@@ -129,12 +131,14 @@ const Dashboard = () => {
                   onShare={handleShare}
                 />
                 <div className="text-center">
-                  <button
+                  <Button
                     onClick={handleStartOver}
-                    className="text-purple-600 hover:text-purple-700 font-medium"
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                   >
+                    <RotateCcw className="mr-2" size={16} />
+                    <Sparkles className="mr-2" size={16} />
                     Restore Another Photo
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -175,7 +179,7 @@ const Dashboard = () => {
                   )}
                 </>
               ) : restoreState === 'loading' ? (
-                <div className="bg-white rounded-lg border border-gray-200 p-12">
+                <div className="bg-white rounded-lg border border-gray-200 p-12 shadow-lg">
                   <LoadingSpinner />
                 </div>
               ) : restoreState === 'comparing' ? (
@@ -201,12 +205,14 @@ const Dashboard = () => {
                     onShare={handleShare}
                   />
                   <div className="text-center">
-                    <button
+                    <Button
                       onClick={handleStartOver}
-                      className="text-purple-600 hover:text-purple-700 font-medium"
+                      className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
+                      <RotateCcw className="mr-2" size={20} />
+                      <Sparkles className="mr-2" size={20} />
                       Restore Another Photo
-                    </button>
+                    </Button>
                   </div>
                 </div>
               )}

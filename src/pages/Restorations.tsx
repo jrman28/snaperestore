@@ -18,7 +18,7 @@ const Restorations = () => {
           <div className="max-w-6xl mx-auto">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">My Restorations</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <p className="text-gray-600">No restorations yet</p>
                 <p className="text-sm text-gray-500 mt-2">Upload your first photo to get started</p>
               </div>
@@ -40,7 +40,7 @@ const Restorations = () => {
             <div className="max-w-6xl mx-auto">
               <h1 className="text-3xl font-bold text-gray-900 mb-8">My Restorations</h1>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <p className="text-gray-600">No restorations yet</p>
                   <p className="text-sm text-gray-500 mt-2">Upload your first photo to get started</p>
                 </div>
