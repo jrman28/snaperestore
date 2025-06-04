@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
-import { DashboardHeader } from '@/components/DashboardHeader';
+import { MobileHeader } from '@/components/MobileHeader';
+import { DesktopHeader } from '@/components/DesktopHeader';
 import { PhotoUpload } from '@/components/PhotoUpload';
 import { RestoreButton } from '@/components/RestoreButton';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
@@ -75,7 +76,7 @@ const Dashboard = () => {
   if (isMobile) {
     return (
       <div className="min-h-screen flex flex-col bg-gray-50">
-        <DashboardHeader />
+        <MobileHeader />
         <div className="flex-1 p-4 sm:p-6 lg:p-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6 lg:mb-8">
@@ -147,7 +148,7 @@ const Dashboard = () => {
       <div className="min-h-screen flex w-full bg-gray-50">
         <AppSidebar />
         <main className="flex-1 flex flex-col">
-          <DashboardHeader />
+          <DesktopHeader />
           <div className="flex-1 p-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-8">
