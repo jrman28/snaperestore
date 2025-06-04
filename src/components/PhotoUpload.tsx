@@ -2,11 +2,16 @@
 import React, { useState, useCallback } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Upload, Camera } from 'lucide-react';
+import { Upload, Camera, X } from 'lucide-react';
 
-export function PhotoUpload() {
+interface PhotoUploadProps {
+  onImageSelect: (file: File, imageUrl: string) => void;
+  selectedFile: File | null;
+  imagePreview: string | null;
+}
+
+export function PhotoUpload({ onImageSelect, selectedFile, imagePreview }: PhotoUploadProps) {
   const [dragActive, setDragActive] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -24,15 +29,80 @@ export function PhotoUpload() {
     setDragActive(false);
     
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setSelectedFile(e.dataTransfer.files[0]);
+      const file = e.dataTransfer.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      onImageSelect(file, imageUrl);
     }
-  }, []);
+  }, [onImageSelect]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]);
+      const file = e.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      onImageSelect(file, imageUrl);
     }
   };
+
+  const handleReplaceImage = () => {
+    const input = document.getElementById('photo-upload') as HTMLInputElement;
+    if (input) {
+      input.click();
+    }
+  };
+
+  const handleRemoveImage = () => {
+    onImageSelect(null as any, null as any);
+  };
+
+  if (imagePreview) {
+    return (
+      <Card className="max-w-2xl mx-auto p-6">
+        <div className="relative">
+          <img
+            src={imagePreview}
+            alt="Selected photo"
+            className="w-full h-96 object-cover rounded-lg"
+          />
+          <div className="absolute top-4 right-4 flex space-x-2">
+            <Button
+              onClick={handleReplaceImage}
+              variant="secondary"
+              size="sm"
+              className="bg-white/90 hover:bg-white"
+            >
+              <Upload size={16} className="mr-1" />
+              Replace Image
+            </Button>
+            <Button
+              onClick={handleRemoveImage}
+              variant="secondary"
+              size="sm"
+              className="bg-white/90 hover:bg-white"
+            >
+              <X size={16} />
+            </Button>
+          </div>
+        </div>
+        
+        <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+          <p className="text-green-800 font-medium">
+            {selectedFile?.name}
+          </p>
+          <p className="text-green-600 text-sm">
+            Ready to restore! Click the restore button below.
+          </p>
+        </div>
+
+        <input
+          type="file"
+          id="photo-upload"
+          className="hidden"
+          accept="image/*"
+          onChange={handleFileSelect}
+        />
+      </Card>
+    );
+  }
 
   return (
     <Card className="max-w-2xl mx-auto p-12">
@@ -40,7 +110,6 @@ export function PhotoUpload() {
         className={`
           border-2 border-dashed rounded-lg p-12 text-center transition-colors
           ${dragActive ? 'border-purple-400 bg-purple-50' : 'border-gray-300'}
-          ${selectedFile ? 'border-green-400 bg-green-50' : ''}
         `}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -84,17 +153,6 @@ export function PhotoUpload() {
           </p>
         </div>
       </div>
-
-      {selectedFile && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-          <p className="text-green-800 font-medium">
-            Selected: {selectedFile.name}
-          </p>
-          <p className="text-green-600 text-sm">
-            Ready to restore! Click process to begin.
-          </p>
-        </div>
-      )}
     </Card>
   );
 }
