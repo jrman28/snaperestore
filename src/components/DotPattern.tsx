@@ -16,16 +16,16 @@ const DotPattern = () => {
             id="dot-pattern"
             x="0"
             y="0"
-            width="20"
-            height="20"
+            width="12"
+            height="12"
             patternUnits="userSpaceOnUse"
           >
             <circle
-              cx="10"
-              cy="10"
-              r="1.5"
+              cx="6"
+              cy="6"
+              r="2.5"
               fill="currentColor"
-              className="text-gray-300 opacity-30"
+              className="text-gray-400 opacity-50"
             />
           </pattern>
         </defs>
