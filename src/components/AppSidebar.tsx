@@ -13,6 +13,7 @@ import {
   SidebarHeader,
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/ui/logo';
 import { useLocation, Link } from 'react-router-dom';
 import { SupportModal } from '@/components/SupportModal';
 
@@ -35,11 +36,9 @@ export function AppSidebar() {
 
   return (
     <>
-      <Sidebar className="border-r">
+      <Sidebar className="border-r shadow-soft">
         <SidebarHeader className="p-6">
-          <div className="flex items-center space-x-2">
-            <h1 className="text-xl font-bold text-gray-900">Reminiscence</h1>
-          </div>
+          <Logo />
         </SidebarHeader>
         
         <SidebarContent>
@@ -51,6 +50,7 @@ export function AppSidebar() {
                     <SidebarMenuButton 
                       asChild 
                       isActive={location.pathname === item.url}
+                      className="touch-target"
                     >
                       <Link to={item.url} className="flex items-center space-x-3">
                         <item.icon size={20} />
@@ -62,7 +62,7 @@ export function AppSidebar() {
                 <SidebarMenuItem>
                   <SidebarMenuButton 
                     onClick={() => setIsSupportModalOpen(true)}
-                    className="flex items-center space-x-3 cursor-pointer"
+                    className="flex items-center space-x-3 cursor-pointer touch-target"
                   >
                     <MessageCircle size={20} />
                     <span>Support</span>
@@ -74,7 +74,7 @@ export function AppSidebar() {
         </SidebarContent>
 
         <SidebarFooter className="p-4">
-          <Button className="w-full bg-purple-600 hover:bg-purple-700">
+          <Button className="w-full bg-purple-600 hover:bg-purple-700 shadow-soft touch-target">
             <Crown size={16} className="mr-2" />
             Upgrade
           </Button>

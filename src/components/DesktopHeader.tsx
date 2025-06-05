@@ -6,10 +6,10 @@ import { UserDropdown } from '@/components/UserDropdown';
 
 export function DesktopHeader() {
   return (
-    <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-4">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 sm:px-6 py-4 sticky top-0 z-40">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <SidebarTrigger className="lg:hidden">
+          <SidebarTrigger className="lg:hidden touch-target">
             <Menu size={20} />
           </SidebarTrigger>
         </div>

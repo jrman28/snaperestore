@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -40,7 +41,7 @@ const Index = () => {
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Left Column - Hero Content */}
-          <div className="space-y-8">
+          <div className="space-y-8 fade-in">
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Restore the Heart of
@@ -60,7 +61,7 @@ const Index = () => {
             <div className="pt-4">
               <button
                 onClick={handleSignUpClick}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-soft-lg hover:shadow-soft-xl touch-target"
               >
                 Start Restoring Photos
               </button>
@@ -68,7 +69,7 @@ const Index = () => {
           </div>
           
           {/* Right Column - Before/After Demo */}
-          <div className="space-y-6">
+          <div className="space-y-6 fade-in">
             <BeforeAfterSlider />
             
             <div className="text-center space-y-2">
@@ -84,16 +85,16 @@ const Index = () => {
       </div>
       
       {/* Footer */}
-      <footer className="bg-white/90 backdrop-blur-sm border-t border-gray-200 mt-20 relative z-10">
+      <footer className="bg-white/90 backdrop-blur-sm border-t border-gray-200 mt-20 relative z-10 shadow-soft">
         <div className="container mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-600 text-sm">
-              © 2024 Reminiscence. All rights reserved.
+              © 2024 SnapRestore. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Privacy</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Terms</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target">Privacy</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target">Terms</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target">Contact</a>
             </div>
           </div>
         </div>
