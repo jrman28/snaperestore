@@ -18,16 +18,12 @@ const Settings = () => {
   const { toast } = useToast();
   const [autoDownload, setAutoDownload] = useState(true);
   const [fileFormat, setFileFormat] = useState('jpg');
-  const [emailNotifications, setEmailNotifications] = useState(true);
-  const [pushNotifications, setPushNotifications] = useState(false);
 
   const handleSaveSettings = () => {
     // Save settings to localStorage
     const settings = {
       autoDownload,
-      fileFormat,
-      emailNotifications,
-      pushNotifications
+      fileFormat
     };
     localStorage.setItem('reminiscence-settings', JSON.stringify(settings));
     
@@ -82,34 +78,6 @@ const Settings = () => {
                 <SelectItem value="webp">WebP (.webp)</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Notifications Settings */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Notifications</CardTitle>
-          <CardDescription>
-            Manage how you receive updates about your restorations
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="email-notifications"
-              checked={emailNotifications}
-              onCheckedChange={setEmailNotifications}
-            />
-            <Label htmlFor="email-notifications">Email notifications</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="push-notifications"
-              checked={pushNotifications}
-              onCheckedChange={setPushNotifications}
-            />
-            <Label htmlFor="push-notifications">Push notifications</Label>
           </div>
         </CardContent>
       </Card>

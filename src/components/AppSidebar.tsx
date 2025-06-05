@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Home, RotateCcw, User, Settings, Crown, MessageCircle } from 'lucide-react';
+import { Home, RotateCcw, Crown, MessageCircle } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -26,16 +26,6 @@ const menuItems = [
     title: "My Restorations", 
     url: "/restorations",
     icon: RotateCcw,
-  },
-  {
-    title: "Profile",
-    url: "/profile", 
-    icon: User,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings,
   },
 ];
 

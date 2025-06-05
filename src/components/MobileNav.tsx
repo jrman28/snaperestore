@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, RotateCcw, User, Settings, MessageCircle } from 'lucide-react';
+import { Home, RotateCcw, Crown, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SupportModal } from '@/components/SupportModal';
 
@@ -15,16 +15,6 @@ const navItems = [
     href: '/restorations', 
     icon: RotateCcw, 
     label: 'Restorations' 
-  },
-  { 
-    href: '/profile', 
-    icon: User, 
-    label: 'Profile' 
-  },
-  { 
-    href: '/settings', 
-    icon: Settings, 
-    label: 'Settings' 
   },
 ];
 
@@ -63,6 +53,13 @@ export const MobileNav = () => {
           >
             <MessageCircle size={20} />
             <span className="text-xs font-medium">Support</span>
+          </button>
+
+          <button
+            className="flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-colors text-purple-600 hover:text-purple-700"
+          >
+            <Crown size={20} />
+            <span className="text-xs font-medium">Upgrade</span>
           </button>
         </div>
       </nav>

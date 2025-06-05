@@ -9,7 +9,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Share2, Image, Calendar, CheckCircle } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Download, Share2, Image, Calendar, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Restoration {
@@ -34,18 +35,25 @@ const Restorations = () => {
       // Add some sample data for demonstration
       const sampleRestorations: Restoration[] = [
         {
-          id: '1',
+          id: 'RST-001',
           originalName: 'family_photo_1950.jpg',
           restoredImageUrl: '/placeholder.svg',
           completedAt: new Date().toISOString(),
           status: 'completed'
         },
         {
-          id: '2',
+          id: 'RST-002',
           originalName: 'wedding_photo_1960.jpg',
           restoredImageUrl: '/placeholder.svg',
           completedAt: new Date(Date.now() - 86400000).toISOString(),
           status: 'completed'
+        },
+        {
+          id: 'RST-003',
+          originalName: 'graduation_1975.jpg',
+          restoredImageUrl: '/placeholder.svg',
+          completedAt: new Date(Date.now() - 172800000).toISOString(),
+          status: 'processing'
         }
       ];
       setRestorations(sampleRestorations);
@@ -81,19 +89,40 @@ const Restorations = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <Badge className="bg-green-100 text-green-800">Completed</Badge>;
+        return (
+          <Badge className="bg-green-100 text-green-800 border-green-200">
+            <CheckCircle className="w-3 h-3 mr-1" />
+            Completed
+          </Badge>
+        );
       case 'processing':
-        return <Badge className="bg-yellow-100 text-yellow-800">Processing</Badge>;
+        return (
+          <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
+            <Clock className="w-3 h-3 mr-1" />
+            Processing
+          </Badge>
+        );
       case 'failed':
-        return <Badge variant="destructive">Failed</Badge>;
+        return (
+          <Badge variant="destructive">
+            <AlertCircle className="w-3 h-3 mr-1" />
+            Failed
+          </Badge>
+        );
       default:
         return <Badge variant="secondary">Unknown</Badge>;
     }
   };
 
   const restorationsContent = (
-    <div className="max-w-6xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">My Restorations</h1>
+    <div className="max-w-7xl mx-auto">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Restorations</h1>
+        <Button className="bg-purple-600 hover:bg-purple-700">
+          <Image className="w-4 h-4 mr-2" />
+          New Restoration
+        </Button>
+      </div>
       
       {restorations.length === 0 ? (
         <Card className="text-center p-8">
@@ -107,54 +136,78 @@ const Restorations = () => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {restorations.map((restoration) => (
-            <Card key={restoration.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-video bg-gray-100 relative">
-                <img
-                  src={restoration.restoredImageUrl}
-                  alt={restoration.originalName}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-2 right-2">
-                  {getStatusBadge(restoration.status)}
-                </div>
-              </div>
-              
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base truncate" title={restoration.originalName}>
-                  {restoration.originalName}
-                </CardTitle>
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Calendar className="w-4 h-4" />
-                  <span>{new Date(restoration.completedAt).toLocaleDateString()}</span>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="pt-0">
-                <div className="flex space-x-2">
-                  <Button 
-                    size="sm" 
-                    onClick={() => handleDownload(restoration)}
-                    className="flex-1 bg-purple-600 hover:bg-purple-700"
-                  >
-                    <Download className="w-4 h-4 mr-1" />
-                    Download
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    onClick={() => handleShare(restoration)}
-                    className="flex-1"
-                  >
-                    <Share2 className="w-4 h-4 mr-1" />
-                    Share
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">Recent Restorations</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="font-medium">Status</TableHead>
+                    <TableHead className="font-medium">Restoration ID</TableHead>
+                    <TableHead className="font-medium">Original Filename</TableHead>
+                    <TableHead className="font-medium">Completion Date</TableHead>
+                    <TableHead className="font-medium text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {restorations.map((restoration) => (
+                    <TableRow key={restoration.id} className="hover:bg-gray-50">
+                      <TableCell>
+                        {getStatusBadge(restoration.status)}
+                      </TableCell>
+                      <TableCell className="font-mono text-sm">
+                        {restoration.id}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-gray-100 rounded border overflow-hidden">
+                            <img
+                              src={restoration.restoredImageUrl}
+                              alt={restoration.originalName}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <span className="font-medium truncate max-w-xs">
+                            {restoration.originalName}
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center space-x-2 text-sm text-gray-600">
+                          <Calendar className="w-4 h-4" />
+                          <span>{new Date(restoration.completedAt).toLocaleDateString()}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleDownload(restoration)}
+                            disabled={restoration.status !== 'completed'}
+                          >
+                            <Download className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleShare(restoration)}
+                            disabled={restoration.status !== 'completed'}
+                          >
+                            <Share2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
       )}
     </div>
   );
