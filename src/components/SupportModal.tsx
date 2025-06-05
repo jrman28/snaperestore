@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -11,7 +12,7 @@ export function SupportModal({
   onOpenChange
 }: SupportModalProps) {
   const handleEmailClick = () => {
-    window.location.href = 'mailto:support@reminiscence.app';
+    window.location.href = 'mailto:support@snaprestore.app';
   };
   return <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
@@ -31,7 +32,7 @@ export function SupportModal({
             <p className="text-sm text-purple-700 mb-3">Send us an email and we'll get back to you as we can.</p>
             <Button onClick={handleEmailClick} className="w-full bg-purple-600 hover:bg-purple-700">
               <Mail className="w-4 h-4 mr-2" />
-              support@reminiscence.app
+              support@snaprestore.app
             </Button>
           </div>
 
