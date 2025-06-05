@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Logo } from '@/components/ui/logo';
 import { UserDropdown } from '@/components/UserDropdown';
@@ -101,11 +100,11 @@ export function MobileHeader() {
 
               <div className="pt-2 border-t border-gray-200">
                 <Button 
-                  className="w-full bg-purple-600 hover:bg-purple-700 touch-target justify-start"
+                  className="w-full bg-purple-600 hover:bg-purple-700 touch-target flex items-center justify-center px-4 py-3 text-base font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Crown size={16} className="mr-2" />
-                  Upgrade to Pro
+                  <Crown size={18} className="mr-3" />
+                  <span>Upgrade to Pro</span>
                 </Button>
               </div>
             </div>
