@@ -4,7 +4,6 @@ import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { MobileHeader } from '@/components/MobileHeader';
 import { DesktopHeader } from '@/components/DesktopHeader';
-import { MobileNav } from '@/components/MobileNav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
@@ -94,10 +93,9 @@ const Settings = () => {
     return (
       <div className="min-h-screen flex flex-col bg-gray-50">
         <MobileHeader />
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-20">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8">
           {settingsContent}
         </div>
-        <MobileNav />
       </div>
     );
   }
