@@ -1,88 +1,76 @@
 
 import React, { useState } from 'react';
-import { Home, RotateCcw, User, Crown } from 'lucide-react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { Home, RotateCcw, User, Settings, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SupportModal } from '@/components/SupportModal';
 
-const menuItems = [
-  {
-    title: "Home",
-    url: "/dashboard",
-    icon: Home,
-    type: 'link' as const,
+const navItems = [
+  { 
+    href: '/dashboard', 
+    icon: Home, 
+    label: 'Home' 
   },
-  {
-    title: "Restorations", 
-    url: "/restorations",
-    icon: RotateCcw,
-    type: 'link' as const,
+  { 
+    href: '/restorations', 
+    icon: RotateCcw, 
+    label: 'Restorations' 
   },
-  {
-    title: "Support",
-    url: "/support", 
-    icon: User,
-    type: 'modal' as const,
+  { 
+    href: '/profile', 
+    icon: User, 
+    label: 'Profile' 
   },
-  {
-    title: "Upgrade",
-    url: "/upgrade", 
-    icon: Crown,
-    type: 'link' as const,
+  { 
+    href: '/settings', 
+    icon: Settings, 
+    label: 'Settings' 
   },
 ];
 
-export function MobileNav() {
+export const MobileNav = () => {
   const location = useLocation();
-  const [supportModalOpen, setSupportModalOpen] = useState(false);
-
-  const handleItemClick = (item: typeof menuItems[0]) => {
-    if (item.type === 'modal' && item.title === 'Support') {
-      setSupportModalOpen(true);
-    }
-  };
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-50 safe-area-inset-bottom">
-        <div className="flex items-center justify-around">
-          {menuItems.map((item) => {
-            if (item.type === 'modal') {
-              return (
-                <button
-                  key={item.title}
-                  onClick={() => handleItemClick(item)}
-                  className="flex flex-col items-center space-y-1 py-2 px-3 rounded-lg transition-colors text-gray-500 hover:text-gray-700"
-                >
-                  <item.icon size={20} />
-                  <span className="text-xs font-medium">{item.title}</span>
-                </button>
-              );
-            }
-
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-50">
+        <div className="flex justify-around items-center max-w-md mx-auto">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.href;
+            
             return (
               <Link
-                key={item.title}
-                to={item.url}
+                key={item.href}
+                to={item.href}
                 className={cn(
-                  "flex flex-col items-center space-y-1 py-2 px-3 rounded-lg transition-colors",
-                  location.pathname === item.url
-                    ? "text-purple-600 bg-purple-50"
-                    : "text-gray-500 hover:text-gray-700"
+                  "flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-colors",
+                  isActive 
+                    ? "text-purple-600 bg-purple-50" 
+                    : "text-gray-600 hover:text-gray-900"
                 )}
               >
-                <item.icon size={20} />
-                <span className="text-xs font-medium">{item.title}</span>
+                <Icon size={20} />
+                <span className="text-xs font-medium">{item.label}</span>
               </Link>
             );
           })}
+          
+          <button
+            onClick={() => setIsSupportModalOpen(true)}
+            className="flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-colors text-gray-600 hover:text-gray-900"
+          >
+            <MessageCircle size={20} />
+            <span className="text-xs font-medium">Support</span>
+          </button>
         </div>
       </nav>
 
       <SupportModal 
-        open={supportModalOpen} 
-        onOpenChange={setSupportModalOpen} 
+        open={isSupportModalOpen} 
+        onOpenChange={setIsSupportModalOpen} 
       />
     </>
   );
-}
+};

@@ -1,25 +1,147 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
-import { DashboardHeader } from '@/components/DashboardHeader';
+import { MobileHeader } from '@/components/MobileHeader';
+import { DesktopHeader } from '@/components/DesktopHeader';
+import { MobileNav } from '@/components/MobileNav';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 
 const Settings = () => {
+  const isMobile = useIsMobile();
+  const { toast } = useToast();
+  const [autoDownload, setAutoDownload] = useState(true);
+  const [fileFormat, setFileFormat] = useState('jpg');
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [pushNotifications, setPushNotifications] = useState(false);
+
+  const handleSaveSettings = () => {
+    // Save settings to localStorage
+    const settings = {
+      autoDownload,
+      fileFormat,
+      emailNotifications,
+      pushNotifications
+    };
+    localStorage.setItem('reminiscence-settings', JSON.stringify(settings));
+    
+    toast({
+      title: "Settings saved",
+      description: "Your preferences have been updated successfully.",
+    });
+  };
+
+  const settingsContent = (
+    <div className="max-w-4xl mx-auto space-y-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Settings</h1>
+      
+      {/* Auto-Download Settings */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Auto-Download</CardTitle>
+          <CardDescription>
+            Automatically download restored images when processing is complete
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="auto-download"
+              checked={autoDownload}
+              onCheckedChange={setAutoDownload}
+            />
+            <Label htmlFor="auto-download">Enable auto-download</Label>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* File Format Settings */}
+      <Card>
+        <CardHeader>
+          <CardTitle>File Format</CardTitle>
+          <CardDescription>
+            Choose the default file format for your restored images
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            <Label htmlFor="file-format">Default format</Label>
+            <Select value={fileFormat} onValueChange={setFileFormat}>
+              <SelectTrigger id="file-format" className="w-full sm:w-48">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="jpg">JPEG (.jpg)</SelectItem>
+                <SelectItem value="png">PNG (.png)</SelectItem>
+                <SelectItem value="webp">WebP (.webp)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Notifications Settings */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Notifications</CardTitle>
+          <CardDescription>
+            Manage how you receive updates about your restorations
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="email-notifications"
+              checked={emailNotifications}
+              onCheckedChange={setEmailNotifications}
+            />
+            <Label htmlFor="email-notifications">Email notifications</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="push-notifications"
+              checked={pushNotifications}
+              onCheckedChange={setPushNotifications}
+            />
+            <Label htmlFor="push-notifications">Push notifications</Label>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex justify-end">
+        <Button onClick={handleSaveSettings} className="bg-purple-600 hover:bg-purple-700">
+          Save Settings
+        </Button>
+      </div>
+    </div>
+  );
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen flex flex-col bg-gray-50">
+        <MobileHeader />
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-20">
+          {settingsContent}
+        </div>
+        <MobileNav />
+      </div>
+    );
+  }
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-gray-50">
         <AppSidebar />
         <main className="flex-1 flex flex-col">
-          <DashboardHeader />
+          <DesktopHeader />
           <div className="flex-1 p-8">
-            <div className="max-w-4xl mx-auto">
-              <h1 className="text-3xl font-bold text-gray-900 mb-8">Settings</h1>
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <p className="text-gray-600">
-                  Configure your app settings and preferences here.
-                </p>
-              </div>
-            </div>
+            {settingsContent}
           </div>
         </main>
       </div>
