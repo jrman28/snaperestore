@@ -12,12 +12,12 @@ const FeatureList = () => {
     {
       icon: Zap,
       title: "See your memories revived instantly",
-      bulletColor: "bg-blue-600"
+      bulletColor: "bg-purple-600"
     },
     {
       icon: Shield,
       title: "Your photos are private, safe, and never shared",
-      bulletColor: "bg-green-600"
+      bulletColor: "bg-purple-600"
     }
   ];
 
