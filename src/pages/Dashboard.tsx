@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
@@ -9,7 +8,6 @@ import { RestoreButton } from '@/components/RestoreButton';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { RestoreSlider } from '@/components/RestoreSlider';
 import { SuccessResult } from '@/components/SuccessResult';
-import { MobileNav } from '@/components/MobileNav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
 import { RotateCcw, Sparkles } from 'lucide-react';
@@ -79,7 +77,7 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen flex flex-col bg-gray-50">
         <MobileHeader />
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6 lg:mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -144,7 +142,6 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-        <MobileNav />
       </div>
     );
   }
