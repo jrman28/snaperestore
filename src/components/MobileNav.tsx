@@ -38,7 +38,7 @@ export const MobileNav = () => {
                   "flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-all duration-200 touch-target",
                   isActive 
                     ? "text-purple-600 bg-purple-50 scale-105" 
-                    : "text-gray-600 hover:text-gray-900 active:scale-95"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 active:scale-95"
                 )}
               >
                 <Icon size={20} />
@@ -49,14 +49,14 @@ export const MobileNav = () => {
           
           <button
             onClick={() => setIsSupportModalOpen(true)}
-            className="flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-all duration-200 text-gray-600 hover:text-gray-900 active:scale-95 touch-target"
+            className="flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50 active:scale-95 touch-target"
           >
             <MessageCircle size={20} />
             <span className="text-xs font-medium">Support</span>
           </button>
 
           <button
-            className="flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-all duration-200 text-purple-600 hover:text-purple-700 active:scale-95 touch-target"
+            className="flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-all duration-200 text-purple-600 hover:text-purple-700 hover:bg-purple-50 active:scale-95 touch-target"
           >
             <Crown size={20} />
             <span className="text-xs font-medium">Upgrade</span>

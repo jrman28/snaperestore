@@ -9,7 +9,7 @@ export function DesktopHeader() {
     <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 sm:px-6 py-4 sticky top-0 z-40">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <SidebarTrigger className="lg:hidden touch-target">
+          <SidebarTrigger className="lg:hidden touch-target hover:bg-gray-100 rounded-md p-2 transition-colors">
             <Menu size={20} />
           </SidebarTrigger>
         </div>
