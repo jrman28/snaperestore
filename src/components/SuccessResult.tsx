@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -18,15 +17,9 @@ export function SuccessResult({ restoredImage, onDownload, onShare }: SuccessRes
         <h3 className="text-lg sm:text-xl font-semibold">Restoration Complete</h3>
       </div>
       
-      <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-600 mb-6">
-        <div className="flex items-center space-x-1">
-          <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
-          <span>Completed on {new Date().toLocaleDateString()}</span>
-        </div>
-        <div className="flex items-center space-x-1">
-          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-          <span>Completed</span>
-        </div>
+      <div className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
+        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+        <span>Completed on {new Date().toLocaleDateString()}</span>
       </div>
 
       <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6">
