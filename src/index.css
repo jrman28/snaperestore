@@ -96,9 +96,15 @@
     padding-top: env(safe-area-inset-top);
   }
 
-  /* Touch feedback for mobile */
+  /* Enhanced touch feedback for mobile */
   button, [role="button"] {
     @apply active:scale-95 transition-transform duration-100;
+  }
+
+  /* Improved focus states for accessibility */
+  input[type="range"]:focus {
+    outline: 2px solid rgb(147 51 234);
+    outline-offset: 2px;
   }
 }
 
@@ -116,6 +122,11 @@
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.15), 0 16px 64px -16px rgba(0, 0, 0, 0.12);
   }
 
+  /* Professional border utilities */
+  .border-3 {
+    border-width: 3px;
+  }
+
   /* Loading states */
   .loading-shimmer {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -128,9 +139,13 @@
     100% { background-position: 200% 0; }
   }
 
-  /* Fade animations */
+  /* Enhanced fade animations */
   .fade-in {
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
   }
 
   @keyframes fadeIn {
@@ -138,9 +153,94 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Touch-friendly sizing */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Slider animations */
+  .slider-smooth {
+    transition: clip-path 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Mobile-optimized touch targets */
   .touch-target {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  /* Enhanced mobile-first responsive design */
+  @media (max-width: 640px) {
+    .mobile-padding {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .mobile-text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  /* Improved hover states for desktop */
+  @media (hover: hover) {
+    .hover-lift:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  /* Professional glass morphism effects */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Gradient text utilities */
+  .gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Enhanced range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0;
+  width: 0;
+}
+
+input[type="range"]::-moz-range-track {
+  background: transparent;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: transparent;
+  border: none;
+  height: 0;
+  width: 0;
+}
+
+/* Improved accessibility for screen readers */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
