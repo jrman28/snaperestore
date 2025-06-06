@@ -42,10 +42,10 @@ const FeatureCards = () => {
             return (
               <div key={index} className="text-center group">
                 <div className="relative mb-8">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <Icon size={32} className="text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm font-bold">
                     {step.step}
                   </div>
                 </div>
@@ -61,7 +61,7 @@ const FeatureCards = () => {
         </div>
 
         <div className="text-center mt-16">
-          <div className="inline-flex items-center px-6 py-3 bg-orange-50 text-orange-700 rounded-full text-lg font-medium">
+          <div className="inline-flex items-center px-6 py-3 bg-purple-50 text-purple-700 rounded-full text-lg font-medium">
             ✨ Average restoration time: Under 30 seconds
           </div>
         </div>

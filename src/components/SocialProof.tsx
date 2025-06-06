@@ -25,7 +25,7 @@ const SocialProof = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-orange-50">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
       <div className="container mx-auto px-6">
         {/* Testimonials Section */}
         <div className="text-center mb-12">

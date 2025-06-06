@@ -58,7 +58,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
+    <section className="py-20 bg-gradient-to-br from-purple-50 to-violet-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -74,17 +74,17 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
           {plans.map((plan, index) => {
             const Icon = plan.icon;
             return (
-              <Card key={index} className={`relative ${plan.popular ? 'border-2 border-orange-500 shadow-xl scale-105' : 'border border-gray-200'}`}>
+              <Card key={index} className={`relative ${plan.popular ? 'border-2 border-purple-500 shadow-xl scale-105' : 'border border-gray-200'}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    <div className="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
                       Most Popular
                     </div>
                   </div>
                 )}
                 
                 <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center ${plan.popular ? 'bg-gradient-to-br from-orange-500 to-amber-500' : 'bg-gradient-to-br from-orange-400 to-amber-400'}`}>
+                  <div className={`w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center ${plan.popular ? 'bg-gradient-to-br from-purple-500 to-violet-500' : 'bg-gradient-to-br from-purple-400 to-violet-400'}`}>
                     <Icon size={28} className="text-white" />
                   </div>
                   <CardTitle className="text-2xl font-bold text-gray-900">
@@ -103,7 +103,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center space-x-3">
-                        <Check size={18} className="text-orange-500 flex-shrink-0" />
+                        <Check size={18} className="text-purple-500 flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
@@ -113,8 +113,8 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
                     onClick={onSignUpClick}
                     className={`w-full py-3 font-semibold text-lg transition-all duration-300 transform hover:scale-105 ${
                       plan.popular 
-                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl' 
-                        : 'bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50'
+                        ? 'bg-gradient-to-r from-purple-500 to-violet-500 hover:from-purple-600 hover:to-violet-600 text-white shadow-lg hover:shadow-xl' 
+                        : 'bg-white border-2 border-purple-500 text-purple-600 hover:bg-purple-50'
                     }`}
                   >
                     Get {plan.credits} Credits
@@ -129,7 +129,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
           <p className="text-gray-600 mb-4">
             ✨ Credits never expire • Restore photos anytime • No hidden fees
           </p>
-          <div className="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">
+          <div className="inline-flex items-center px-6 py-3 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
             💡 Need more credits? Contact us for custom packages
           </div>
         </div>

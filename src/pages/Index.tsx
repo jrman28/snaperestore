@@ -31,10 +31,10 @@ const Index = () => {
     <div 
       className="min-h-screen relative"
       style={{
-        backgroundColor: '#fefaf7',
+        backgroundColor: '#faf7ff',
         backgroundImage: `
-          radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.15) 1px, transparent 0),
-          radial-gradient(circle at 1px 1px, rgba(245, 101, 101, 0.1) 1px, transparent 0)
+          radial-gradient(circle at 1px 1px, rgba(147, 51, 234, 0.15) 1px, transparent 0),
+          radial-gradient(circle at 1px 1px, rgba(168, 85, 247, 0.1) 1px, transparent 0)
         `,
         backgroundSize: '24px 24px, 48px 48px',
         backgroundPosition: '0 0, 12px 12px'
@@ -48,14 +48,14 @@ const Index = () => {
           {/* Left Column - Hero Content */}
           <div className="space-y-8 fade-in">
             <div className="space-y-6">
-              <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">
                 ✨ Trusted by 50,000+ families worldwide
               </div>
               
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Restore the Heart of
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-violet-600">
                   Your Family Photos
                 </span>
               </h1>
@@ -70,7 +70,7 @@ const Index = () => {
             <div className="pt-4 space-y-4">
               <button
                 onClick={handleSignUpClick}
-                className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl touch-target"
+                className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl touch-target"
               >
                 Start Restoring Photos Free
               </button>

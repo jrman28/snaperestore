@@ -9,7 +9,7 @@ interface CTASectionProps {
 
 const CTASection = ({ onSignUpClick }: CTASectionProps) => {
   return (
-    <section className="py-20 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-purple-600 via-violet-600 to-purple-700 relative overflow-hidden">
       {/* Background Pattern */}
       <div 
         className="absolute inset-0 opacity-10"
@@ -33,7 +33,7 @@ const CTASection = ({ onSignUpClick }: CTASectionProps) => {
             </span>
           </h2>
           
-          <p className="text-xl text-orange-100 mb-8 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xl text-purple-100 mb-8 leading-relaxed max-w-2xl mx-auto">
             Join thousands of families who've already brought their photos back to life. 
             Start with 3 free restorations—no credit card required.
           </p>
@@ -42,29 +42,29 @@ const CTASection = ({ onSignUpClick }: CTASectionProps) => {
             <Button
               onClick={onSignUpClick}
               size="lg"
-              className="bg-white text-orange-700 hover:bg-gray-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 touch-target rounded-xl"
+              className="bg-white text-purple-700 hover:bg-gray-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 touch-target rounded-xl"
             >
               <Upload size={20} className="mr-3" />
               Start Restoring Free
               <ArrowRight size={20} className="ml-3" />
             </Button>
             
-            <div className="text-orange-200 text-sm">
+            <div className="text-purple-200 text-sm">
               ✨ 3 free restorations • Then buy credits as needed
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-orange-400/30">
+          <div className="mt-12 pt-8 border-t border-purple-400/30">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-              <div className="text-orange-100">
+              <div className="text-purple-100">
                 <div className="text-2xl font-bold text-white mb-1">Pay per use</div>
                 <div className="text-sm">Credits never expire</div>
               </div>
-              <div className="text-orange-100">
+              <div className="text-purple-100">
                 <div className="text-2xl font-bold text-white mb-1">Zero risk</div>
                 <div className="text-sm">Your photos stay private</div>
               </div>
-              <div className="text-orange-100">
+              <div className="text-purple-100">
                 <div className="text-2xl font-bold text-white mb-1">100% satisfaction</div>
                 <div className="text-sm">Love it or your money back</div>
               </div>
