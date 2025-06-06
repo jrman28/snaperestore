@@ -15,7 +15,7 @@ const BeforeAfterSlider = () => {
       <div className="relative overflow-hidden rounded-lg shadow-2xl">
         {/* Before Image */}
         <img
-          src="/lovable-uploads/b302a410-9a64-4b86-9188-b169b415522b.png"
+          src="/lovable-uploads/b6f49195-6f51-44c5-9589-68cf06273ea1.png"
           alt="Before restoration"
           className="w-full h-80 object-cover"
         />
@@ -26,7 +26,7 @@ const BeforeAfterSlider = () => {
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <img
-            src="/lovable-uploads/b6f49195-6f51-44c5-9589-68cf06273ea1.png"
+            src="/lovable-uploads/b302a410-9a64-4b86-9188-b169b415522b.png"
             alt="After restoration"
             className="w-full h-80 object-cover"
           />
