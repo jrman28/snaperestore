@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -8,6 +7,7 @@ import FeatureCards from '@/components/FeatureCards';
 import SocialProof from '@/components/SocialProof';
 import PricingSection from '@/components/PricingSection';
 import CTASection from '@/components/CTASection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,6 +108,9 @@ const Index = () => {
 
       {/* CTA Section */}
       <CTASection onSignUpClick={handleSignUpClick} />
+      
+      {/* Footer */}
+      <Footer />
       
       <AuthModal
         isOpen={isModalOpen}
