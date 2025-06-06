@@ -60,7 +60,7 @@ const Index = () => {
               </h1>
               
               <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                Give any photo—from faded black & white to timeworn snapshots—a fresh, modern look with our elegant AI-powered restoration. Rediscover the beauty in every memory, no matter its age or condition.
+                Give any photo—from faded black & white to timeworn snapshots—a fresh, modern look with our elegant restoration magic. Rediscover the beauty in every memory, no matter its age or condition.
               </p>
             </div>
             
@@ -86,7 +86,7 @@ const Index = () => {
             
             <div className="text-center space-y-2">
               <p className="text-gray-600 font-medium">
-                ✨ Powered by advanced AI technology
+                ✨ Powered by restoration magic
               </p>
               <p className="text-sm text-gray-500">
                 See the transformation in real-time
@@ -104,59 +104,6 @@ const Index = () => {
 
       {/* CTA Section */}
       <CTASection onSignUpClick={handleSignUpClick} />
-      
-      {/* Footer */}
-      <footer className="bg-white/90 backdrop-blur-sm border-t border-gray-200 relative z-10 shadow-soft">
-        <div className="container mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900">Product</h3>
-              <div className="space-y-2 text-sm">
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Features</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Pricing</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">API</a>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900">Support</h3>
-              <div className="space-y-2 text-sm">
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Help Center</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Contact Us</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Status</a>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900">Company</h3>
-              <div className="space-y-2 text-sm">
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">About</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Blog</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Careers</a>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900">Legal</h3>
-              <div className="space-y-2 text-sm">
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Privacy</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Terms</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Security</a>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-200 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-gray-600 text-sm">
-                © 2024 SnapRestore. All rights reserved.
-              </div>
-              <div className="flex items-center space-x-6">
-                <div className="text-sm text-gray-500">
-                  Made with ❤️ for preserving memories
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
       
       <AuthModal
         isOpen={isModalOpen}

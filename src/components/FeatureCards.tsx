@@ -1,45 +1,26 @@
 
 import React from 'react';
-import { Upload, Zap, Shield, Sparkles, Clock, Heart } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Upload, Sparkles, Download } from 'lucide-react';
 
 const FeatureCards = () => {
-  const features = [
+  const steps = [
     {
+      step: "01",
       icon: Upload,
-      title: "Upload & Go",
-      description: "Simply upload your photo—no technical skills needed. Our AI handles the rest.",
-      color: "from-purple-500 to-purple-600"
+      title: "Upload & Click Restore",
+      description: "Drop your old photo and hit the restore button. That's it—no complicated settings or technical know-how required."
     },
     {
-      icon: Zap,
-      title: "Instant Results",
-      description: "Watch your memories transform in seconds with our lightning-fast AI processing.",
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: Shield,
-      title: "100% Private",
-      description: "Your precious memories stay yours. We never store or share your photos.",
-      color: "from-emerald-500 to-emerald-600"
-    },
-    {
+      step: "02", 
       icon: Sparkles,
-      title: "AI-Powered Magic",
-      description: "Advanced restoration algorithms bring faded photos back to life with stunning clarity.",
-      color: "from-violet-500 to-violet-600"
+      title: "Watch the Magic Happen",
+      description: "Sit back and relax while our restoration magic works behind the scenes. Your photo is being transformed in real-time."
     },
     {
-      icon: Clock,
-      title: "Save Time",
-      description: "What used to take hours in photo editors now happens in seconds automatically.",
-      color: "from-amber-500 to-amber-600"
-    },
-    {
-      icon: Heart,
-      title: "Preserve Memories",
-      description: "Give your family photos the love they deserve with professional-quality restoration.",
-      color: "from-rose-500 to-rose-600"
+      step: "03",
+      icon: Download,
+      title: "Download Your Masterpiece",
+      description: "In just seconds, your beautifully restored photo is ready. Download it instantly and share your renewed memories."
     }
   ];
 
@@ -48,33 +29,41 @@ const FeatureCards = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Why Choose SnapRestore?
+            Photo Restoration in 3 Simple Steps
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Experience the perfect blend of cutting-edge AI technology and user-friendly design. 
-            Restore your precious memories with confidence and ease.
+            Transform your cherished memories in seconds. No expertise needed—just pure magic that brings your photos back to life.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
             return (
-              <Card key={index} className="group hover:shadow-soft-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-soft">
-                <CardContent className="p-8">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon size={28} className="text-white" />
+              <div key={index} className="text-center group">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-soft-lg">
+                    <Icon size={32} className="text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm font-bold">
+                    {step.step}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  {step.description}
+                </p>
+              </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center px-6 py-3 bg-purple-50 text-purple-700 rounded-full text-lg font-medium">
+            ✨ Average restoration time: Under 30 seconds
+          </div>
         </div>
       </div>
     </section>
