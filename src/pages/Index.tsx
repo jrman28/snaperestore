@@ -4,6 +4,9 @@ import Header from '@/components/Header';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import AuthModal from '@/components/AuthModal';
 import FeatureList from '@/components/FeatureList';
+import FeatureCards from '@/components/FeatureCards';
+import SocialProof from '@/components/SocialProof';
+import CTASection from '@/components/CTASection';
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,11 +41,16 @@ const Index = () => {
     >
       <Header onSignInClick={handleSignInClick} onSignUpClick={handleSignUpClick} />
       
+      {/* Hero Section */}
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Left Column - Hero Content */}
           <div className="space-y-8 fade-in">
             <div className="space-y-6">
+              <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">
+                ✨ Trusted by 50,000+ families worldwide
+              </div>
+              
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Restore the Heart of
                 <br />
@@ -58,13 +66,17 @@ const Index = () => {
             
             <FeatureList />
             
-            <div className="pt-4">
+            <div className="pt-4 space-y-4">
               <button
                 onClick={handleSignUpClick}
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-soft-lg hover:shadow-soft-xl touch-target"
               >
-                Start Restoring Photos
+                Start Restoring Photos Free
               </button>
+              
+              <div className="text-sm text-gray-500">
+                No credit card required • 3 free restorations to start
+              </div>
             </div>
           </div>
           
@@ -73,7 +85,7 @@ const Index = () => {
             <BeforeAfterSlider />
             
             <div className="text-center space-y-2">
-              <p className="text-gray-600">
+              <p className="text-gray-600 font-medium">
                 ✨ Powered by advanced AI technology
               </p>
               <p className="text-sm text-gray-500">
@@ -83,18 +95,64 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* Feature Cards Section */}
+      <FeatureCards />
+
+      {/* Social Proof Section */}
+      <SocialProof />
+
+      {/* CTA Section */}
+      <CTASection onSignUpClick={handleSignUpClick} />
       
       {/* Footer */}
-      <footer className="bg-white/90 backdrop-blur-sm border-t border-gray-200 mt-20 relative z-10 shadow-soft">
-        <div className="container mx-auto px-6 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-600 text-sm">
-              © 2024 SnapRestore. All rights reserved.
+      <footer className="bg-white/90 backdrop-blur-sm border-t border-gray-200 relative z-10 shadow-soft">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-900">Product</h3>
+              <div className="space-y-2 text-sm">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Features</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Pricing</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">API</a>
+              </div>
             </div>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target">Privacy</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target">Terms</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target">Contact</a>
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-900">Support</h3>
+              <div className="space-y-2 text-sm">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Help Center</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Contact Us</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Status</a>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-900">Company</h3>
+              <div className="space-y-2 text-sm">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">About</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Blog</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Careers</a>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-900">Legal</h3>
+              <div className="space-y-2 text-sm">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Privacy</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Terms</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors touch-target block">Security</a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-200 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="text-gray-600 text-sm">
+                © 2024 SnapRestore. All rights reserved.
+              </div>
+              <div className="flex items-center space-x-6">
+                <div className="text-sm text-gray-500">
+                  Made with ❤️ for preserving memories
+                </div>
+              </div>
             </div>
           </div>
         </div>
