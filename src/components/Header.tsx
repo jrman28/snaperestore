@@ -32,7 +32,7 @@ const Header = ({ onSignInClick, onSignUpClick }: HeaderProps) => {
           <Button variant="outline" onClick={onSignInClick} className="touch-target">
             Sign In
           </Button>
-          <Button onClick={onSignUpClick} className="bg-purple-600 hover:bg-purple-700 touch-target">
+          <Button onClick={onSignUpClick} className="bg-orange-600 hover:bg-orange-700 touch-target">
             Sign Up
           </Button>
         </div>
@@ -97,7 +97,7 @@ const Header = ({ onSignInClick, onSignUpClick }: HeaderProps) => {
                   onSignUpClick();
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full bg-purple-600 hover:bg-purple-700 touch-target"
+                className="w-full bg-orange-600 hover:bg-orange-700 touch-target"
               >
                 Sign Up
               </Button>
