@@ -10,6 +10,8 @@ import Dashboard from "./pages/Dashboard";
 import Restorations from "./pages/Restorations";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -35,6 +37,8 @@ const App = () => {
             <Route path="/restorations" element={<Restorations />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

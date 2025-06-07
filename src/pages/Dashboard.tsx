@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
@@ -12,7 +13,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
 import { RotateCcw, Sparkles } from 'lucide-react';
 
-type RestoreState = 'upload' | 'ready' | 'loading' | 'comparing' | 'complete';
+type RestoreState = 'upload' | 'ready' | 'loading' | 'complete';
 
 const Dashboard = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -35,12 +36,8 @@ const Dashboard = () => {
       // For demo purposes, we'll use a placeholder restored image
       // In a real app, this would be the result from your AI restoration API
       setRestoredImage(imagePreview); // Using same image for demo
-      setRestoreState('comparing');
+      setRestoreState('complete');
     }, 3000);
-  };
-
-  const handleViewResult = () => {
-    setRestoreState('complete');
   };
 
   const handleDownload = () => {
@@ -106,23 +103,12 @@ const Dashboard = () => {
               <div className="bg-white rounded-lg border border-gray-200 p-8 lg:p-12 shadow-lg">
                 <LoadingSpinner />
               </div>
-            ) : restoreState === 'comparing' ? (
+            ) : (
               <div className="space-y-6 mb-6">
                 <RestoreSlider 
                   originalImage={imagePreview!}
                   restoredImage={restoredImage!}
                 />
-                <div className="text-center">
-                  <button
-                    onClick={handleViewResult}
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-6 lg:px-8 py-2 lg:py-3 rounded-lg font-medium text-sm lg:text-base"
-                  >
-                    View Final Result
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-6 mb-6">
                 <SuccessResult 
                   restoredImage={restoredImage!}
                   onDownload={handleDownload}
@@ -179,23 +165,12 @@ const Dashboard = () => {
                 <div className="bg-white rounded-lg border border-gray-200 p-12 shadow-lg">
                   <LoadingSpinner />
                 </div>
-              ) : restoreState === 'comparing' ? (
+              ) : (
                 <div className="space-y-6">
                   <RestoreSlider 
                     originalImage={imagePreview!}
                     restoredImage={restoredImage!}
                   />
-                  <div className="text-center">
-                    <button
-                      onClick={handleViewResult}
-                      className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium"
-                    >
-                      View Final Result
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-6">
                   <SuccessResult 
                     restoredImage={restoredImage!}
                     onDownload={handleDownload}
