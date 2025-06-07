@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Eye, EyeOff } from 'lucide-react';
+import { Mail, Github, Apple } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -15,9 +15,19 @@ interface AuthModalProps {
 }
 
 const AuthModal = ({ isOpen, onClose, mode, onSwitchMode }: AuthModalProps) => {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [showMagicLink, setShowMagicLink] = useState(false);
+
+  const handleMagicLinkSend = () => {
+    console.log('Sending magic link to:', email);
+    setShowMagicLink(true);
+    // Here you would integrate with Supabase to send the magic link
+  };
+
+  const handleOAuthProvider = (provider: string) => {
+    console.log(`Authenticating with ${provider}`);
+    // Here you would integrate with Supabase OAuth
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -50,75 +60,99 @@ const AuthModal = ({ isOpen, onClose, mode, onSwitchMode }: AuthModalProps) => {
           </div>
           
           <div className="space-y-4">
-            <div>
-              <Label htmlFor="email">Email address</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="password">Password</Label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
-            </div>
-            
-            {mode === 'signin' && (
-              <div className="text-right">
-                <a href="#" className="text-purple-600 hover:text-purple-700 text-sm">
-                  Forgot password?
-                </a>
-              </div>
-            )}
-            
-            <Button className="w-full bg-purple-600 hover:bg-purple-700">
-              {mode === 'signin' ? 'Sign In to Reminiscence' : 'Create Account'}
-            </Button>
-            
-            <Separator />
-            
-            <div className="text-center text-sm text-gray-600">
-              or continue with
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <Button variant="outline" className="w-full">
-                <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
+            {/* Primary OAuth Options */}
+            <div className="space-y-3">
+              <Button 
+                variant="outline" 
+                className="w-full h-12 text-base"
+                onClick={() => handleOAuthProvider('google')}
+              >
+                <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                   <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                   <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                Google
+                Continue with Google
               </Button>
-              <Button variant="outline" className="w-full">
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                Facebook
+              
+              <Button 
+                variant="outline" 
+                className="w-full h-12 text-base"
+                onClick={() => handleOAuthProvider('github')}
+              >
+                <Github className="w-5 h-5 mr-3" />
+                Continue with GitHub
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                className="w-full h-12 text-base"
+                onClick={() => handleOAuthProvider('apple')}
+              >
+                <Apple className="w-5 h-5 mr-3" />
+                Continue with Apple
               </Button>
             </div>
             
-            <div className="text-center text-xs text-gray-500">
-              Your photos are private, secure, and never shared
+            <div className="relative">
+              <Separator />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="bg-white px-2 text-sm text-gray-500">or</span>
+              </div>
+            </div>
+            
+            {/* Magic Link Section */}
+            {!showMagicLink ? (
+              <div className="space-y-3">
+                <div>
+                  <Label htmlFor="email">Email address</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="h-12"
+                  />
+                </div>
+                
+                <Button 
+                  className="w-full h-12 bg-purple-600 hover:bg-purple-700"
+                  onClick={handleMagicLinkSend}
+                  disabled={!email}
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Send Magic Link
+                </Button>
+              </div>
+            ) : (
+              <div className="text-center space-y-3 py-4">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+                  <Mail className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="font-semibold text-lg">Check your email</h3>
+                <p className="text-gray-600 text-sm">
+                  We've sent a magic link to <strong>{email}</strong>
+                </p>
+                <p className="text-gray-500 text-xs">
+                  Click the link in your email to {mode === 'signin' ? 'sign in' : 'create your account'}
+                </p>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setShowMagicLink(false)}
+                  className="text-purple-600 hover:text-purple-700"
+                >
+                  Use a different email
+                </Button>
+              </div>
+            )}
+            
+            <div className="text-center text-xs text-gray-500 pt-4">
+              <p>Your photos are private, secure, and never shared</p>
+              <p className="mt-1">
+                By continuing, you agree to our Terms of Service and Privacy Policy
+              </p>
             </div>
           </div>
         </div>
