@@ -10,11 +10,9 @@ import { Mail, Github, Apple } from 'lucide-react';
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mode: 'signin' | 'signup';
-  onSwitchMode: () => void;
 }
 
-const AuthModal = ({ isOpen, onClose, mode, onSwitchMode }: AuthModalProps) => {
+const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [email, setEmail] = useState('');
   const [showMagicLink, setShowMagicLink] = useState(false);
 
@@ -34,31 +32,14 @@ const AuthModal = ({ isOpen, onClose, mode, onSwitchMode }: AuthModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-bold">
-            {mode === 'signin' ? 'Welcome back' : 'Create your account'}
+            Get Started
           </DialogTitle>
           <p className="text-center text-gray-600">
-            {mode === 'signin' ? 'Sign in to restore your memories' : 'Start restoring your photos today'}
+            Sign in or create your account to start restoring photos
           </p>
         </DialogHeader>
         
         <div className="space-y-4">
-          <div className="flex justify-center space-x-4 mb-6">
-            <Button
-              variant={mode === 'signin' ? 'default' : 'ghost'}
-              onClick={mode === 'signup' ? onSwitchMode : undefined}
-              className="flex-1"
-            >
-              Sign In
-            </Button>
-            <Button
-              variant={mode === 'signup' ? 'default' : 'ghost'}
-              onClick={mode === 'signin' ? onSwitchMode : undefined}
-              className="flex-1"
-            >
-              Sign Up
-            </Button>
-          </div>
-          
           <div className="space-y-4">
             {/* Primary OAuth Options */}
             <div className="space-y-3">
@@ -123,7 +104,7 @@ const AuthModal = ({ isOpen, onClose, mode, onSwitchMode }: AuthModalProps) => {
                   disabled={!email}
                 >
                   <Mail className="w-4 h-4 mr-2" />
-                  Send Magic Link
+                  Continue with Email
                 </Button>
               </div>
             ) : (
@@ -136,7 +117,7 @@ const AuthModal = ({ isOpen, onClose, mode, onSwitchMode }: AuthModalProps) => {
                   We've sent a magic link to <strong>{email}</strong>
                 </p>
                 <p className="text-gray-500 text-xs">
-                  Click the link in your email to {mode === 'signin' ? 'sign in' : 'create your account'}
+                  Click the link in your email to continue
                 </p>
                 <Button 
                   variant="ghost" 

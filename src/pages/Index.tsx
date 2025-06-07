@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -11,20 +12,9 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
 
-  const handleSignInClick = () => {
-    setAuthMode('signin');
+  const handleGetStartedClick = () => {
     setIsModalOpen(true);
-  };
-
-  const handleSignUpClick = () => {
-    setAuthMode('signup');
-    setIsModalOpen(true);
-  };
-
-  const handleSwitchMode = () => {
-    setAuthMode(authMode === 'signin' ? 'signup' : 'signin');
   };
 
   return (
@@ -40,7 +30,7 @@ const Index = () => {
         backgroundPosition: '0 0, 12px 12px'
       }}
     >
-      <Header onSignInClick={handleSignInClick} onSignUpClick={handleSignUpClick} />
+      <Header onGetStartedClick={handleGetStartedClick} />
       
       {/* Hero Section */}
       <div className="container mx-auto px-6 py-12 relative z-10">
@@ -69,7 +59,7 @@ const Index = () => {
             
             <div className="pt-4 space-y-4">
               <button
-                onClick={handleSignUpClick}
+                onClick={handleGetStartedClick}
                 className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl touch-target"
               >
                 Start Restoring Photos Free
@@ -104,10 +94,10 @@ const Index = () => {
       <SocialProof />
 
       {/* Pricing Section */}
-      <PricingSection onSignUpClick={handleSignUpClick} />
+      <PricingSection onSignUpClick={handleGetStartedClick} />
 
       {/* CTA Section */}
-      <CTASection onSignUpClick={handleSignUpClick} />
+      <CTASection onSignUpClick={handleGetStartedClick} />
       
       {/* Footer */}
       <Footer />
@@ -115,8 +105,6 @@ const Index = () => {
       <AuthModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        mode={authMode}
-        onSwitchMode={handleSwitchMode}
       />
     </div>
   );

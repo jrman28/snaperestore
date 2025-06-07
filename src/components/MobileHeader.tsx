@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { Logo } from '@/components/ui/logo';
 import { UserDropdown } from '@/components/UserDropdown';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Home, RotateCcw, Crown, MessageCircle } from 'lucide-react';
+import { Menu, X, Home, RotateCcw, ShoppingCart, MessageCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { SupportModal } from '@/components/SupportModal';
@@ -103,8 +104,8 @@ export function MobileHeader() {
                   className="w-full bg-purple-600 hover:bg-purple-700 touch-target flex items-center justify-center px-4 py-3 text-base font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Crown size={18} className="mr-3" />
-                  <span>Upgrade to Pro</span>
+                  <ShoppingCart size={18} className="mr-3" />
+                  <span>Buy Credits</span>
                 </Button>
               </div>
             </div>

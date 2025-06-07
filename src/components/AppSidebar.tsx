@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Home, RotateCcw, Crown, MessageCircle } from 'lucide-react';
+import { Home, RotateCcw, ShoppingCart, MessageCircle } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -75,8 +75,8 @@ export function AppSidebar() {
 
         <SidebarFooter className="p-4">
           <Button className="w-full bg-purple-600 hover:bg-purple-700 shadow-soft touch-target transition-all duration-200">
-            <Crown size={16} className="mr-2" />
-            Upgrade to Pro
+            <ShoppingCart size={16} className="mr-2" />
+            Buy Credits
           </Button>
         </SidebarFooter>
       </Sidebar>

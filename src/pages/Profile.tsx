@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Crown, User, Mail, Calendar, Image, Download, Trash2 } from 'lucide-react';
+import { ShoppingCart, User, Mail, Calendar, Image, Download, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Profile = () => {
@@ -97,35 +97,35 @@ const Profile = () => {
         </CardContent>
       </Card>
 
-      {/* Plan Information */}
+      {/* Credits Information */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Crown className="w-5 h-5" />
-            <span>Plan Information</span>
+            <ShoppingCart className="w-5 h-5" />
+            <span>Credits & Billing</span>
           </CardTitle>
           <CardDescription>
-            Your current subscription and billing details
+            Your current credits and purchase history
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center space-x-2">
-                <span className="font-medium">Free Plan</span>
-                <Badge variant="secondary">Current</Badge>
+                <span className="font-medium">Available Credits</span>
+                <Badge variant="secondary">3 remaining</Badge>
               </div>
-              <div className="text-sm text-gray-600 mt-1">5 restorations per month</div>
+              <div className="text-sm text-gray-600 mt-1">Credits never expire</div>
             </div>
             <Button className="bg-purple-600 hover:bg-purple-700">
-              <Crown className="w-4 h-4 mr-2" />
-              Upgrade Plan
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              Buy More Credits
             </Button>
           </div>
           <div className="border-t pt-4">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
               <Calendar className="w-4 h-4" />
-              <span>Next billing date: Not applicable (Free Plan)</span>
+              <span>Last purchase: Never (using free credits)</span>
             </div>
           </div>
         </CardContent>

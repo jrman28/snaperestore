@@ -6,11 +6,10 @@ import { HelpCircle, Globe, Menu, X } from 'lucide-react';
 import { SupportModal } from '@/components/SupportModal';
 
 interface HeaderProps {
-  onSignInClick: () => void;
-  onSignUpClick: () => void;
+  onGetStartedClick: () => void;
 }
 
-const Header = ({ onSignInClick, onSignUpClick }: HeaderProps) => {
+const Header = ({ onGetStartedClick }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
@@ -41,14 +40,9 @@ const Header = ({ onSignInClick, onSignUpClick }: HeaderProps) => {
             English
           </Button>
           
-          <div className="flex space-x-2">
-            <Button variant="outline" onClick={onSignInClick} className="touch-target">
-              Sign In
-            </Button>
-            <Button onClick={onSignUpClick} className="bg-black hover:bg-gray-800 text-white touch-target">
-              Sign Up
-            </Button>
-          </div>
+          <Button onClick={onGetStartedClick} className="bg-black hover:bg-gray-800 text-white touch-target">
+            Get Started
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -95,25 +89,15 @@ const Header = ({ onSignInClick, onSignUpClick }: HeaderProps) => {
                 English
               </Button>
               
-              <div className="pt-2 border-t border-gray-200 space-y-2">
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    onSignInClick();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full touch-target"
-                >
-                  Sign In
-                </Button>
+              <div className="pt-2 border-t border-gray-200">
                 <Button 
                   onClick={() => {
-                    onSignUpClick();
+                    onGetStartedClick();
                     setIsMobileMenuOpen(false);
                   }}
                   className="w-full bg-black hover:bg-gray-800 text-white touch-target"
                 >
-                  Sign Up
+                  Get Started
                 </Button>
               </div>
             </div>
