@@ -66,7 +66,7 @@ const Index = () => {
               </button>
               
               <div className="text-sm text-gray-500">
-                No credit card required • 3 free restorations to start
+                No credit card required • 1 free restoration to start
               </div>
             </div>
           </div>

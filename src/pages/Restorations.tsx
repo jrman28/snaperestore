@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { EmptyState } from '@/components/ui/empty-state';
 import { LoadingTableRow } from '@/components/ui/loading-card';
-import { Download, Share2, Image, Calendar, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { Download, Share2, Image, Calendar, CheckCircle, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Restoration {
@@ -19,7 +19,7 @@ interface Restoration {
   originalName: string;
   restoredImageUrl: string;
   completedAt: string;
-  status: 'completed' | 'processing' | 'failed';
+  status: 'completed' | 'processing';
 }
 
 const Restorations = () => {
@@ -101,11 +101,6 @@ const Restorations = () => {
         return <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
             <Clock className="w-3 h-3 mr-1" />
             Processing
-          </Badge>;
-      case 'failed':
-        return <Badge variant="destructive">
-            <AlertCircle className="w-3 h-3 mr-1" />
-            Failed
           </Badge>;
       default:
         return <Badge variant="secondary">Unknown</Badge>;

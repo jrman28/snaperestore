@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const BeforeAfterSlider = () => {
-  const [sliderPosition, setSliderPosition] = useState(0);
+  const [sliderPosition, setSliderPosition] = useState(50);
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(e.target.value));
@@ -58,6 +58,10 @@ const BeforeAfterSlider = () => {
           </div>
         </div>
       </div>
+      
+      <p className="text-center text-gray-600 mt-4">
+        Drag the slider to compare before and after restoration
+      </p>
     </div>
   );
 };

@@ -34,7 +34,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
         "High-quality output",
         "Priority processing",
         "Download in multiple formats",
-        "Batch upload support"
+        "Email support"
       ],
       icon: Zap,
       popular: true
@@ -49,8 +49,8 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
         "Highest quality output",
         "Lightning-fast processing",
         "Download in multiple formats",
-        "Batch upload support",
-        "Priority customer support"
+        "Priority customer support",
+        "Early access to new features"
       ],
       icon: Crown,
       popular: false
