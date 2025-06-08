@@ -35,7 +35,7 @@ const CTASection = ({ onSignUpClick }: CTASectionProps) => {
           
           <p className="text-xl text-purple-100 mb-8 leading-relaxed max-w-2xl mx-auto">
             Join thousands of families who've already brought their photos back to life. 
-            Start with 3 free restorations—no credit card required.
+            Start with 1 free restoration—no credit card required.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -50,7 +50,7 @@ const CTASection = ({ onSignUpClick }: CTASectionProps) => {
             </Button>
             
             <div className="text-purple-200 text-sm">
-              ✨ 3 free restorations • Then buy credits as needed
+              ✨ 1 free restoration • Then buy credits as needed
             </div>
           </div>
           

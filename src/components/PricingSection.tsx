@@ -13,7 +13,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
     {
       name: "Starter Pack",
       credits: 10,
-      price: "$9",
+      price: "$15",
       description: "Perfect for trying our restoration magic",
       features: [
         "10 photo restorations",
@@ -27,7 +27,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
     {
       name: "Family Pack",
       credits: 50,
-      price: "$39",
+      price: "$50",
       description: "Great for preserving family memories",
       features: [
         "50 photo restorations",
@@ -42,7 +42,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
     {
       name: "Heritage Pack",
       credits: 150,
-      price: "$99",
+      price: "$120",
       description: "For serious photo restoration projects",
       features: [
         "150 photo restorations",
@@ -50,7 +50,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
         "Lightning-fast processing",
         "Download in multiple formats",
         "Priority customer support",
-        "Early access to new features"
+        "Batch uploads (coming soon)"
       ],
       icon: Crown,
       popular: false

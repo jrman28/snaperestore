@@ -20,18 +20,14 @@ export function SuccessResult({ restoredImage, onDownload, restoration }: Succes
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const handleShareClick = () => {
-    if (restoration) {
-      setIsShareModalOpen(true);
-    } else {
-      // Fallback for basic share
-      if (navigator.share) {
-        navigator.share({
-          title: 'Restored Photo',
-          text: 'Check out my restored photo!',
-          url: restoredImage
-        });
-      }
-    }
+    // Always open the ShareModal with proper restoration data
+    const restorationData = restoration || {
+      id: `RST-${Date.now()}`,
+      originalName: 'restored_image.jpg',
+      restoredImageUrl: restoredImage
+    };
+    
+    setIsShareModalOpen(true);
   };
 
   return (
@@ -76,13 +72,15 @@ export function SuccessResult({ restoredImage, onDownload, restoration }: Succes
         </div>
       </Card>
 
-      {restoration && (
-        <ShareModal
-          open={isShareModalOpen}
-          onOpenChange={setIsShareModalOpen}
-          restoration={restoration}
-        />
-      )}
+      <ShareModal
+        open={isShareModalOpen}
+        onOpenChange={setIsShareModalOpen}
+        restoration={restoration || {
+          id: `RST-${Date.now()}`,
+          originalName: 'restored_image.jpg',
+          restoredImageUrl: restoredImage
+        }}
+      />
     </>
   );
 }

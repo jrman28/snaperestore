@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { EmptyState } from '@/components/ui/empty-state';
 import { LoadingTableRow } from '@/components/ui/loading-card';
+import { ShareModal } from '@/components/ShareModal';
 import { Download, Share2, Image, Calendar, CheckCircle, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -27,6 +28,8 @@ const Restorations = () => {
   const { toast } = useToast();
   const [restorations, setRestorations] = useState<Restoration[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [selectedRestoration, setSelectedRestoration] = useState<Restoration | null>(null);
 
   useEffect(() => {
     // Simulate loading
@@ -74,20 +77,8 @@ const Restorations = () => {
   };
 
   const handleShare = (restoration: Restoration) => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'Restored Photo',
-        text: `Check out my restored photo: ${restoration.originalName}`,
-        url: restoration.restoredImageUrl
-      });
-    } else {
-      // Fallback - copy to clipboard
-      navigator.clipboard.writeText(restoration.restoredImageUrl);
-      toast({
-        title: "Link copied",
-        description: "Restoration link copied to clipboard"
-      });
-    }
+    setSelectedRestoration(restoration);
+    setShareModalOpen(true);
   };
 
   const getStatusBadge = (status: string) => {
@@ -219,6 +210,14 @@ const Restorations = () => {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {selectedRestoration && (
+        <ShareModal
+          open={shareModalOpen}
+          onOpenChange={setShareModalOpen}
+          restoration={selectedRestoration}
+        />
       )}
     </div>
   );
