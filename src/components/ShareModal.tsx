@@ -6,7 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Card, CardContent } from '@/components/ui/card';
-import { Copy, Mail, MessageCircle, Share2, Eye, Clock, Download } from 'lucide-react';
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Copy, Mail, MessageCircle, Share2, Eye, Clock, Download, ChevronDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ShareModalProps {
@@ -73,12 +79,12 @@ export function ShareModal({ open, onOpenChange, restoration }: ShareModalProps)
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Preview Card */}
           <Card>
-            <CardContent className="p-4">
+            <CardContent className="p-3">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gray-100 rounded border overflow-hidden shadow-soft">
+                <div className="w-10 h-10 bg-gray-100 rounded border overflow-hidden shadow-soft">
                   <img 
                     src={restoration.restoredImageUrl} 
                     alt={restoration.originalName} 
@@ -86,10 +92,10 @@ export function ShareModal({ open, onOpenChange, restoration }: ShareModalProps)
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 truncate">
+                  <p className="font-medium text-gray-900 truncate text-sm">
                     {restoration.originalName}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs text-gray-500">
                     Restored with SnapRestore
                   </p>
                 </div>
@@ -97,85 +103,78 @@ export function ShareModal({ open, onOpenChange, restoration }: ShareModalProps)
             </CardContent>
           </Card>
 
-          {/* Share Options */}
-          <div className="space-y-4">
-            <div>
-              <Label className="text-sm font-medium">Share Settings</Label>
-              <div className="mt-2 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <Download className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm">Allow download</span>
-                  </div>
-                  <Switch
-                    checked={shareSettings.allowDownload}
-                    onCheckedChange={(checked) => 
-                      setShareSettings(prev => ({ ...prev, allowDownload: checked }))
-                    }
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <Clock className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm">Link expires in 7 days</span>
-                  </div>
-                  <Eye className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-            </div>
-
-            {/* Share Link */}
-            <div className="space-y-2">
-              <Label htmlFor="share-link" className="text-sm font-medium">Share Link</Label>
-              <div className="flex space-x-2">
-                <Input
-                  id="share-link"
-                  value={shareUrl}
-                  readOnly
-                  className="flex-1"
-                />
-                <Button size="sm" onClick={handleCopyLink} className="px-3">
-                  <Copy className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Quick Share Buttons */}
-            <div className="space-y-2">
-              <Label className="text-sm font-medium">Quick Share</Label>
-              <div className="grid grid-cols-2 gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleEmailShare}
-                  className="justify-center"
-                >
-                  <Mail className="w-4 h-4 mr-2" />
-                  Email
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSocialShare('whatsapp')}
-                  className="justify-center"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  WhatsApp
-                </Button>
-              </div>
+          {/* Share Link */}
+          <div className="space-y-2">
+            <Label htmlFor="share-link" className="text-sm font-medium">Share Link</Label>
+            <div className="flex space-x-2">
+              <Input
+                id="share-link"
+                value={shareUrl}
+                readOnly
+                className="flex-1 text-sm"
+              />
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex justify-end space-x-2 pt-4 border-t">
-            <Button variant="outline" onClick={() => onOpenChange(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleCopyLink} className="bg-purple-600 hover:bg-purple-700">
+          {/* Share Settings - Compact */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Download className="w-4 h-4 text-gray-500" />
+                <span className="text-sm">Allow download</span>
+              </div>
+              <Switch
+                checked={shareSettings.allowDownload}
+                onCheckedChange={(checked) => 
+                  setShareSettings(prev => ({ ...prev, allowDownload: checked }))
+                }
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Clock className="w-4 h-4 text-gray-500" />
+                <span className="text-sm">Link expires in 7 days</span>
+              </div>
+              <Eye className="w-4 h-4 text-gray-400" />
+            </div>
+          </div>
+
+          {/* Primary and Secondary Actions */}
+          <div className="flex space-x-2 pt-2">
+            <Button 
+              onClick={handleCopyLink} 
+              className="flex-1 bg-purple-600 hover:bg-purple-700"
+            >
               <Copy className="w-4 h-4 mr-2" />
               Copy Link
             </Button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="flex-shrink-0">
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-40">
+                <DropdownMenuItem onClick={handleEmailShare}>
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleSocialShare('whatsapp')}>
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  WhatsApp
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleSocialShare('twitter')}>
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Twitter
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleSocialShare('facebook')}>
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Facebook
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </DialogContent>

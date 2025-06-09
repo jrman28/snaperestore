@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/ui/logo';
-import { HelpCircle, Globe, Menu, X } from 'lucide-react';
+import { HelpCircle, Menu, X } from 'lucide-react';
 import { SupportModal } from '@/components/SupportModal';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 interface HeaderProps {
   onGetStartedClick: () => void;
@@ -35,10 +36,7 @@ const Header = ({ onGetStartedClick }: HeaderProps) => {
             Help
           </Button>
           
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900 touch-target">
-            <Globe size={18} className="mr-2" />
-            English
-          </Button>
+          <LanguageSelector />
           
           <Button onClick={onGetStartedClick} className="bg-black hover:bg-gray-800 text-white touch-target">
             Get Started
@@ -81,13 +79,7 @@ const Header = ({ onGetStartedClick }: HeaderProps) => {
                 Help
               </Button>
               
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-gray-600 hover:text-gray-900 touch-target"
-              >
-                <Globe size={18} className="mr-2" />
-                English
-              </Button>
+              <LanguageSelector className="w-full justify-start" />
               
               <div className="pt-2 border-t border-gray-200">
                 <Button 

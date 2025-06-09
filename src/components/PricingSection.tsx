@@ -50,7 +50,7 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
         "Lightning-fast processing",
         "Download in multiple formats",
         "Priority customer support",
-        "Batch uploads (coming soon)"
+        { text: "Batch uploads", comingSoon: true }
       ],
       icon: Crown,
       popular: false
@@ -104,7 +104,18 @@ const PricingSection = ({ onSignUpClick }: PricingSectionProps) => {
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center space-x-3">
                         <Check size={18} className="text-purple-500 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
+                        {typeof feature === 'string' ? (
+                          <span className="text-gray-700">{feature}</span>
+                        ) : (
+                          <span className="text-gray-700">
+                            {feature.text}
+                            {feature.comingSoon && (
+                              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 border border-purple-200">
+                                coming soon
+                              </span>
+                            )}
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ul>

@@ -68,7 +68,7 @@ const Profile = () => {
         </CardContent>
       </Card>
 
-      {/* Usage Statistics */}
+      {/* Usage Statistics - Simplified */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
@@ -80,24 +80,24 @@ const Profile = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-2xl font-bold text-purple-600">12</div>
-              <div className="text-sm text-gray-600">Photos Restored</div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div className="text-center p-3 sm:p-4 bg-purple-50 rounded-lg">
+              <div className="text-xl sm:text-2xl font-bold text-purple-600">12</div>
+              <div className="text-xs sm:text-sm text-gray-600">Photos Restored</div>
             </div>
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">8</div>
-              <div className="text-sm text-gray-600">Downloads</div>
+            <div className="text-center p-3 sm:p-4 bg-blue-50 rounded-lg">
+              <div className="text-xl sm:text-2xl font-bold text-blue-600">8</div>
+              <div className="text-xs sm:text-sm text-gray-600">Downloads</div>
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="text-2xl font-bold text-green-600">3</div>
-              <div className="text-sm text-gray-600">Days Active</div>
+            <div className="col-span-2 sm:col-span-1 text-center p-3 sm:p-4 bg-green-50 rounded-lg">
+              <div className="text-xl sm:text-2xl font-bold text-green-600">3</div>
+              <div className="text-xs sm:text-sm text-gray-600">Days Active</div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Credits Information */}
+      {/* Credits Information - Mobile Responsive */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
@@ -109,22 +109,22 @@ const Profile = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center space-x-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex-1">
+              <div className="flex items-center space-x-2 mb-1">
                 <span className="font-medium">Available Credits</span>
                 <Badge variant="secondary">3 remaining</Badge>
               </div>
-              <div className="text-sm text-gray-600 mt-1">Credits never expire</div>
+              <div className="text-sm text-gray-600">Credits never expire</div>
             </div>
-            <Button className="bg-purple-600 hover:bg-purple-700">
+            <Button className="bg-purple-600 hover:bg-purple-700 w-full sm:w-auto">
               <ShoppingCart className="w-4 h-4 mr-2" />
               Buy More Credits
             </Button>
           </div>
           <div className="border-t pt-4">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-4 h-4 flex-shrink-0" />
               <span>Last purchase: Never (using free credits)</span>
             </div>
           </div>
