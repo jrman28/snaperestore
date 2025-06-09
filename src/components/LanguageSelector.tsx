@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { 
   DropdownMenu,
@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Globe, Check } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useLanguageContext } from '@/contexts/LanguageContext';
 
 interface Language {
   code: string;
@@ -18,14 +18,14 @@ interface Language {
 
 const languages: Language[] = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Spanish', flag: '🇪🇸' },
-  { code: 'fr', name: 'French', flag: '🇫🇷' },
-  { code: 'de', name: 'German', flag: '🇩🇪' },
-  { code: 'it', name: 'Italian', flag: '🇮🇹' },
-  { code: 'pt', name: 'Portuguese', flag: '🇵🇹' },
-  { code: 'ja', name: 'Japanese', flag: '🇯🇵' },
-  { code: 'ko', name: 'Korean', flag: '🇰🇷' },
-  { code: 'zh', name: 'Chinese', flag: '🇨🇳' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: '한국어', flag: '🇰🇷' },
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
 ];
 
 interface LanguageSelectorProps {
@@ -35,19 +35,12 @@ interface LanguageSelectorProps {
 }
 
 export function LanguageSelector({ variant = 'ghost', size = 'sm', className }: LanguageSelectorProps) {
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
-  const { toast } = useToast();
+  const { currentLanguage, changeLanguage, t } = useLanguageContext();
 
-  const currentLanguage = languages.find(lang => lang.code === selectedLanguage) || languages[0];
+  const currentLanguageData = languages.find(lang => lang.code === currentLanguage) || languages[0];
 
-  const handleLanguageChange = (languageCode: string) => {
-    setSelectedLanguage(languageCode);
-    const language = languages.find(lang => lang.code === languageCode);
-    
-    toast({
-      title: "Language changed",
-      description: `Language set to ${language?.name}`,
-    });
+  const handleLanguageChange = async (languageCode: string) => {
+    await changeLanguage(languageCode);
   };
 
   return (
@@ -59,7 +52,7 @@ export function LanguageSelector({ variant = 'ghost', size = 'sm', className }: 
           className={`text-gray-600 hover:text-gray-900 touch-target ${className}`}
         >
           <Globe size={18} className="mr-2" />
-          {currentLanguage.name}
+          {currentLanguageData.name}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48 bg-white shadow-soft-lg">
@@ -73,7 +66,7 @@ export function LanguageSelector({ variant = 'ghost', size = 'sm', className }: 
               <span className="text-lg">{language.flag}</span>
               <span>{language.name}</span>
             </div>
-            {selectedLanguage === language.code && (
+            {currentLanguage === language.code && (
               <Check className="w-4 h-4 text-purple-600" />
             )}
           </DropdownMenuItem>

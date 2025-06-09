@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Mail, Github, Apple } from 'lucide-react';
+import { useLanguageContext } from '@/contexts/LanguageContext';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ interface AuthModalProps {
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [email, setEmail] = useState('');
   const [showMagicLink, setShowMagicLink] = useState(false);
+  const { t } = useLanguageContext();
 
   const handleMagicLinkSend = () => {
     console.log('Sending magic link to:', email);
@@ -32,10 +34,10 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-bold">
-            Get Started
+            {t('get_started', 'Get Started')}
           </DialogTitle>
           <p className="text-center text-gray-600">
-            Sign in or create your account to start restoring photos
+            {t('auth_subtitle', 'Sign in or create your account to start restoring photos')}
           </p>
         </DialogHeader>
         
@@ -54,7 +56,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                Continue with Google
+                {t('continue_with_google', 'Continue with Google')}
               </Button>
               
               <Button 
@@ -63,7 +65,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 onClick={() => handleOAuthProvider('github')}
               >
                 <Github className="w-5 h-5 mr-3 text-gray-900" />
-                Continue with GitHub
+                {t('continue_with_github', 'Continue with GitHub')}
               </Button>
               
               <Button 
@@ -72,14 +74,14 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 onClick={() => handleOAuthProvider('apple')}
               >
                 <Apple className="w-5 h-5 mr-3 text-gray-900" />
-                Continue with Apple
+                {t('continue_with_apple', 'Continue with Apple')}
               </Button>
             </div>
             
             <div className="relative">
               <Separator />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-white px-2 text-sm text-gray-500">or</span>
+                <span className="bg-white px-2 text-sm text-gray-500">{t('or', 'or')}</span>
               </div>
             </div>
             
@@ -87,11 +89,11 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
             {!showMagicLink ? (
               <div className="space-y-3">
                 <div>
-                  <Label htmlFor="email">Email address</Label>
+                  <Label htmlFor="email">{t('email', 'Email address')}</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder={t('email_placeholder', 'Enter your email')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="h-12"
@@ -104,7 +106,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   disabled={!email}
                 >
                   <Mail className="w-4 h-4 mr-2" />
-                  Continue with Email
+                  {t('continue_with_email', 'Continue with Email')}
                 </Button>
               </div>
             ) : (
@@ -112,27 +114,27 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
                   <Mail className="w-8 h-8 text-purple-600" />
                 </div>
-                <h3 className="font-semibold text-lg">Check your email</h3>
+                <h3 className="font-semibold text-lg">{t('check_email', 'Check your email')}</h3>
                 <p className="text-gray-600 text-sm">
-                  We've sent a magic link to <strong>{email}</strong>
+                  {t('magic_link_sent', `We've sent a magic link to`)} <strong>{email}</strong>
                 </p>
                 <p className="text-gray-500 text-xs">
-                  Click the link in your email to continue
+                  {t('click_link_continue', 'Click the link in your email to continue')}
                 </p>
                 <Button 
                   variant="ghost" 
                   onClick={() => setShowMagicLink(false)}
                   className="text-purple-600 hover:text-purple-700"
                 >
-                  Use a different email
+                  {t('use_different_email', 'Use a different email')}
                 </Button>
               </div>
             )}
             
             <div className="text-center text-xs text-gray-500 pt-4">
-              <p>Your photos are private, secure, and never shared</p>
+              <p>{t('privacy_notice', 'Your photos are private, secure, and never shared')}</p>
               <p className="mt-1">
-                By continuing, you agree to our Terms of Service and Privacy Policy
+                {t('terms_notice', 'By continuing, you agree to our Terms of Service and Privacy Policy')}
               </p>
             </div>
           </div>

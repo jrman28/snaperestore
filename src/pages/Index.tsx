@@ -9,9 +9,11 @@ import SocialProof from '@/components/SocialProof';
 import PricingSection from '@/components/PricingSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import { useLanguageContext } from '@/contexts/LanguageContext';
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguageContext();
 
   const handleGetStartedClick = () => {
     setIsModalOpen(true);
@@ -39,19 +41,15 @@ const Index = () => {
           <div className="space-y-8 fade-in">
             <div className="space-y-6">
               <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">
-                ✨ Trusted by 50,000+ families worldwide
+                ✨ {t('trusted_by', 'Trusted by 50,000+ families worldwide')}
               </div>
               
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Restore the Heart of
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-violet-600">
-                  Your Family Photos
-                </span>
+                {t('welcome_message', 'Restore the Heart of Your Family Photos')}
               </h1>
               
               <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                Give any photo—from faded black & white to timeworn snapshots—a fresh, modern look with our elegant restoration magic. Rediscover the beauty in every memory, no matter its age or condition.
+                {t('hero_description', 'Give any photo—from faded black & white to timeworn snapshots—a fresh, modern look with our elegant restoration magic. Rediscover the beauty in every memory, no matter its age or condition.')}
               </p>
             </div>
             
@@ -62,11 +60,11 @@ const Index = () => {
                 onClick={handleGetStartedClick}
                 className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl touch-target"
               >
-                Start Restoring Photos Free
+                {t('start_restoring', 'Start Restoring Photos Free')}
               </button>
               
               <div className="text-sm text-gray-500">
-                No credit card required • 1 free restoration to start
+                {t('no_credit_card', 'No credit card required • 1 free restoration to start')}
               </div>
             </div>
           </div>
@@ -77,10 +75,10 @@ const Index = () => {
             
             <div className="text-center space-y-2">
               <p className="text-gray-600 font-medium">
-                ✨ Powered by restoration magic
+                ✨ {t('powered_by_magic', 'Powered by restoration magic')}
               </p>
               <p className="text-sm text-gray-500">
-                See the transformation in real-time
+                {t('see_transformation', 'See the transformation in real-time')}
               </p>
             </div>
           </div>
