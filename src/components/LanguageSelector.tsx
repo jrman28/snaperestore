@@ -29,7 +29,7 @@ const languages: Language[] = [
 ];
 
 interface LanguageSelectorProps {
-  variant?: 'button' | 'ghost';
+  variant?: 'default' | 'ghost';
   size?: 'sm' | 'default';
   className?: string;
 }
