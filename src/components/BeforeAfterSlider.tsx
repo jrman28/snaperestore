@@ -38,62 +38,30 @@ const BeforeAfterSlider = () => {
           After
         </div>
         
-        {/* Slider positioned at the bottom */}
-        <div className="absolute bottom-6 left-0 w-full px-6">
-          <div className="relative">
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={sliderPosition}
-              onChange={handleSliderChange}
-              className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer slider-thumb"
-              style={{
-                background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${sliderPosition}%, #d1d5db ${sliderPosition}%, #d1d5db 100%)`
-              }}
-            />
-            <div 
-              className="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 bg-purple-600 rounded-full shadow-lg pointer-events-none border-2 border-white"
-              style={{ left: `calc(${sliderPosition}% - 12px)` }}
-            >
-              <div className="w-2 h-2 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+        {/* Slider */}
+        <div className="absolute top-0 left-0 w-full h-full flex items-center">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={sliderPosition}
+            onChange={handleSliderChange}
+            className="w-full opacity-0 cursor-pointer"
+          />
+          <div 
+            className="absolute w-1 h-full bg-white shadow-lg pointer-events-none"
+            style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+          >
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+              <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
             </div>
           </div>
         </div>
-        
-        {/* Divider line */}
-        <div 
-          className="absolute top-0 w-0.5 h-full bg-white shadow-lg pointer-events-none"
-          style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
-        />
       </div>
       
       <p className="text-center text-gray-600 mt-4">
         Drag the slider to compare before and after restoration
       </p>
-      
-      <style jsx>{`
-        .slider-thumb::-webkit-slider-thumb {
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #8b5cf6;
-          border: 2px solid white;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .slider-thumb::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #8b5cf6;
-          border: 2px solid white;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-      `}</style>
     </div>
   );
 };
