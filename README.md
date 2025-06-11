@@ -1,4 +1,18 @@
-# Welcome to your Lovable project
+# SnapRestore - AI-Powered Image Restoration
+
+Transform your old, damaged, or faded photographs into stunning, modern images with the power of artificial intelligence. SnapRestore is your digital photo restoration companion that breathes new life into your cherished memories.
+
+## Features
+
+- **One-Click Restoration**: Upload your image and let our AI do the magic
+- **Multiple Restoration Types**:
+  - Colorize black and white photos
+  - Repair cracks and scratches
+  - Remove stains and blemishes
+  - Enhance faded colors
+  - Improve image quality and resolution
+- **Instant Results**: Get your restored image in seconds
+- **User-Friendly Interface**: Simple and intuitive design for all users
 
 ## Project info
 

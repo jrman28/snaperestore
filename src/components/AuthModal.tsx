@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -64,7 +63,14 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 className="w-full h-12 text-base hover:bg-gray-50 border-gray-200"
                 onClick={() => handleOAuthProvider('github')}
               >
-                <Github className="w-5 h-5 mr-3 text-gray-900" />
+                {/* Custom GitHub SVG */}
+                <svg className="w-5 h-5 mr-3" viewBox="0 0 768 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M384 64C192 64 64 192 64 384c0 141.6 91.2 261.6 216.8 304 16 3.2 21.6-6.4 21.6-14.4 0-7.2 0-30.4 0-56-88 19.2-106.4-41.6-106.4-41.6-14.4-36.8-35.2-46.4-35.2-46.4-28.8-20 2.4-20 2.4-20 32 2.4 48.8 32.8 48.8 32.8 28 48.8 73.6 34.8 91.6 26.4 2.8-20.4 10.9-34.8 19.8-42.8-70.4-8-144.4-35.2-144.4-156.8 0-34.8 12.4-63.2 32.8-85.6-3.2-8-14.4-40.8 3.2-85.6 0 0 26.4-8.4 86.4 32.8 25.2-7.2 52-10.8 78.8-10.8s53.6 3.6 78.8 10.8c60-41.2 86.4-32.8 86.4-32.8 17.6 44.8 6.4 77.6 3.2 85.6 20.4 22.4 32.8 50.8 32.8 85.6 0 121.6-74 148.8-144.8 156.8 11.2 9.6 20.8 28.8 20.8 58.4 0 42.4 0 76.8 0 87.2 0 8 5.6 17.6 21.6 14.4C612.8 645.6 704 525.6 704 384 704 192 576 64 384 64z" fill="#000000"></path>
+                  </g>
+                </svg>
                 {t('continue_with_github', 'Continue with GitHub')}
               </Button>
               
@@ -73,7 +79,14 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 className="w-full h-12 text-base hover:bg-gray-50 border-gray-200"
                 onClick={() => handleOAuthProvider('apple')}
               >
-                <Apple className="w-5 h-5 mr-3 text-gray-900" />
+                {/* Custom Apple SVG */}
+                <svg className="w-5 h-5 mr-3" viewBox="0 0 768 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M624.8 576.8c-8.8 20-18.4 38.4-28.8 54.4-15.2 23.2-27.6 39.2-37.6 48.8-15.2 14.4-31.6 21.6-49.2 21.6-12.8 0-28.4-3.6-46.4-10.8-18-7.2-34.4-10.8-49.2-10.8-15.2 0-31.6 3.6-49.2 10.8-17.6 7.2-33.2 10.8-46.4 10.8-17.6 0-34-7.2-49.2-21.6-10.4-9.6-22.8-25.6-37.6-48.8-10.4-16-20-34.4-28.8-54.4-9.6-22.4-17.2-46.8-22.8-73.6-6-28.8-9.2-56.4-9.2-82.4 0-30.4 6.8-56.8 20.4-79.2 10.8-17.2 25.2-30.8 43.2-40.8 18-10 37.6-15.2 58.8-15.2 11.2 0 26.4 3.6 45.2 10.8 18.8 7.2 31.2 10.8 36.8 10.8 4.8 0 18.8-3.6 41.2-10.8 22-7.2 40.4-10.8 55.2-10.8 20.8 0 40.4 5.2 58.4 15.2 18 10 32.4 23.6 43.2 40.8 13.6 22.4 20.4 48.8 20.4 79.2 0 26-3.2 53.6-9.2 82.4-5.6 26.8-13.2 51.2-22.8 73.6zM496.8 144c0 16.8-6.4 33.2-19.2 49.2-15.6 18.8-34.4 29.6-55.2 27.6-0.4-2.4-0.4-5.2-0.4-8.4 0-16.4 7.2-33.6 20.4-48.8 6.8-8 15.6-15.2 26.4-21.2 10.8-6 21.2-9.6 31.2-10.8 0.4 2.8 0.8 5.6 0.8 8.4z" fill="#000000"></path>
+                  </g>
+                </svg>
                 {t('continue_with_apple', 'Continue with Apple')}
               </Button>
             </div>
