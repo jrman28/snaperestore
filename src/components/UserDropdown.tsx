@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,27 +9,55 @@ import {
 import { Button } from '@/components/ui/button';
 import { User, Settings, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 
 export function UserDropdown() {
-  const handleSignOut = () => {
-    // Navigate to landing page
-    window.location.href = '/';
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => { listener?.subscription.unsubscribe(); };
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      // Clear any local state/storage if needed
+      localStorage.removeItem('snaprestore-restorations');
+      // Force a hard refresh to ensure all components re-render with new auth state
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
+
+  if (!user) {
+    return null;
+  }
+
+  const initials = user.user_metadata?.full_name
+    ? user.user_metadata.full_name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)
+    : (user.email ? user.email[0].toUpperCase() : 'U');
+  const fullName = user.user_metadata?.full_name || user.email || 'User';
+  const email = user.email || '';
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 hover:bg-gray-100 transition-colors">
           <div className="w-full h-full bg-purple-600 rounded-full flex items-center justify-center text-white text-sm font-medium shadow-soft">
-            SJ
+            {initials}
           </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 bg-white shadow-soft-lg" align="end" forceMount>
         <div className="flex flex-col space-y-1 p-3">
-          <p className="text-sm font-medium leading-none">Sarah Johnson</p>
+          <p className="text-sm font-medium leading-none">{fullName}</p>
           <p className="text-xs leading-none text-muted-foreground">
-            sarah@example.com
+            {email}
           </p>
         </div>
         <DropdownMenuSeparator />

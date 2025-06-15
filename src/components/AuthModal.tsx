@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Mail, Github, Apple } from 'lucide-react';
-import { useLanguageContext } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -15,17 +15,36 @@ interface AuthModalProps {
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [email, setEmail] = useState('');
   const [showMagicLink, setShowMagicLink] = useState(false);
-  const { t } = useLanguageContext();
 
-  const handleMagicLinkSend = () => {
-    console.log('Sending magic link to:', email);
+  const handleMagicLinkSend = async () => {
+    if (!email) return;
     setShowMagicLink(true);
-    // Here you would integrate with Supabase to send the magic link
+    // Send magic link using Supabase, redirect to /dashboard
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/dashboard`
+      }
+    });
+    if (error) {
+      // Show error to user (could use toast or inline message)
+      alert('Error sending magic link: ' + error.message);
+      setShowMagicLink(false);
+    }
+    // If no error, show the "Check your email" message
   };
 
-  const handleOAuthProvider = (provider: string) => {
-    console.log(`Authenticating with ${provider}`);
-    // Here you would integrate with Supabase OAuth
+  const handleOAuthProvider = async (provider: string) => {
+    // Sign in with OAuth, redirect to /dashboard
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`
+      }
+    });
+    if (error) {
+      alert('Error with OAuth: ' + error.message);
+    }
   };
 
   return (
@@ -33,13 +52,12 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-bold">
-            {t('get_started', 'Get Started')}
+            Get Started
           </DialogTitle>
           <p className="text-center text-gray-600">
-            {t('auth_subtitle', 'Sign in or create your account to start restoring photos')}
+            Sign in or create your account to start restoring photos
           </p>
         </DialogHeader>
-        
         <div className="space-y-4">
           <div className="space-y-4">
             {/* Primary OAuth Options */}
@@ -55,9 +73,8 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                {t('continue_with_google', 'Continue with Google')}
+                Continue with Google
               </Button>
-              
               <Button 
                 variant="outline" 
                 className="w-full h-12 text-base hover:bg-gray-50 border-gray-200"
@@ -71,7 +88,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M384 64C192 64 64 192 64 384c0 141.6 91.2 261.6 216.8 304 16 3.2 21.6-6.4 21.6-14.4 0-7.2 0-30.4 0-56-88 19.2-106.4-41.6-106.4-41.6-14.4-36.8-35.2-46.4-35.2-46.4-28.8-20 2.4-20 2.4-20 32 2.4 48.8 32.8 48.8 32.8 28 48.8 73.6 34.8 91.6 26.4 2.8-20.4 10.9-34.8 19.8-42.8-70.4-8-144.4-35.2-144.4-156.8 0-34.8 12.4-63.2 32.8-85.6-3.2-8-14.4-40.8 3.2-85.6 0 0 26.4-8.4 86.4 32.8 25.2-7.2 52-10.8 78.8-10.8s53.6 3.6 78.8 10.8c60-41.2 86.4-32.8 86.4-32.8 17.6 44.8 6.4 77.6 3.2 85.6 20.4 22.4 32.8 50.8 32.8 85.6 0 121.6-74 148.8-144.8 156.8 11.2 9.6 20.8 28.8 20.8 58.4 0 42.4 0 76.8 0 87.2 0 8 5.6 17.6 21.6 14.4C612.8 645.6 704 525.6 704 384 704 192 576 64 384 64z" fill="#000000"></path>
                   </g>
                 </svg>
-                {t('continue_with_github', 'Continue with GitHub')}
+                Continue with GitHub
               </Button>
               
               <Button 
@@ -87,14 +104,14 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M624.8 576.8c-8.8 20-18.4 38.4-28.8 54.4-15.2 23.2-27.6 39.2-37.6 48.8-15.2 14.4-31.6 21.6-49.2 21.6-12.8 0-28.4-3.6-46.4-10.8-18-7.2-34.4-10.8-49.2-10.8-15.2 0-31.6 3.6-49.2 10.8-17.6 7.2-33.2 10.8-46.4 10.8-17.6 0-34-7.2-49.2-21.6-10.4-9.6-22.8-25.6-37.6-48.8-10.4-16-20-34.4-28.8-54.4-9.6-22.4-17.2-46.8-22.8-73.6-6-28.8-9.2-56.4-9.2-82.4 0-30.4 6.8-56.8 20.4-79.2 10.8-17.2 25.2-30.8 43.2-40.8 18-10 37.6-15.2 58.8-15.2 11.2 0 26.4 3.6 45.2 10.8 18.8 7.2 31.2 10.8 36.8 10.8 4.8 0 18.8-3.6 41.2-10.8 22-7.2 40.4-10.8 55.2-10.8 20.8 0 40.4 5.2 58.4 15.2 18 10 32.4 23.6 43.2 40.8 13.6 22.4 20.4 48.8 20.4 79.2 0 26-3.2 53.6-9.2 82.4-5.6 26.8-13.2 51.2-22.8 73.6zM496.8 144c0 16.8-6.4 33.2-19.2 49.2-15.6 18.8-34.4 29.6-55.2 27.6-0.4-2.4-0.4-5.2-0.4-8.4 0-16.4 7.2-33.6 20.4-48.8 6.8-8 15.6-15.2 26.4-21.2 10.8-6 21.2-9.6 31.2-10.8 0.4 2.8 0.8 5.6 0.8 8.4z" fill="#000000"></path>
                   </g>
                 </svg>
-                {t('continue_with_apple', 'Continue with Apple')}
+                Continue with Apple
               </Button>
             </div>
             
             <div className="relative">
               <Separator />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-white px-2 text-sm text-gray-500">{t('or', 'or')}</span>
+                <span className="bg-white px-2 text-sm text-gray-500">or</span>
               </div>
             </div>
             
@@ -102,11 +119,11 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
             {!showMagicLink ? (
               <div className="space-y-3">
                 <div>
-                  <Label htmlFor="email">{t('email', 'Email address')}</Label>
+                  <Label htmlFor="email">Email address</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder={t('email_placeholder', 'Enter your email')}
+                    placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="h-12"
@@ -119,7 +136,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                   disabled={!email}
                 >
                   <Mail className="w-4 h-4 mr-2" />
-                  {t('continue_with_email', 'Continue with Email')}
+                  Continue with Email
                 </Button>
               </div>
             ) : (
@@ -127,27 +144,27 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
                   <Mail className="w-8 h-8 text-purple-600" />
                 </div>
-                <h3 className="font-semibold text-lg">{t('check_email', 'Check your email')}</h3>
+                <h3 className="font-semibold text-lg">Check your email</h3>
                 <p className="text-gray-600 text-sm">
-                  {t('magic_link_sent', `We've sent a magic link to`)} <strong>{email}</strong>
+                  We've sent a magic link to <strong>{email}</strong>
                 </p>
                 <p className="text-gray-500 text-xs">
-                  {t('click_link_continue', 'Click the link in your email to continue')}
+                  Click the link in your email to continue
                 </p>
                 <Button 
                   variant="ghost" 
                   onClick={() => setShowMagicLink(false)}
                   className="text-purple-600 hover:text-purple-700"
                 >
-                  {t('use_different_email', 'Use a different email')}
+                  Use a different email
                 </Button>
               </div>
             )}
             
             <div className="text-center text-xs text-gray-500 pt-4">
-              <p>{t('privacy_notice', 'Your photos are private, secure, and never shared')}</p>
+              <p>Your photos are private, secure, and never shared</p>
               <p className="mt-1">
-                {t('terms_notice', 'By continuing, you agree to our Terms of Service and Privacy Policy')}
+                By continuing, you agree to our Terms of Service and Privacy Policy
               </p>
             </div>
           </div>

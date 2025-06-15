@@ -163,6 +163,35 @@ export type Database = {
         }
         Relationships: []
       }
+      user_credits: {
+        Row: {
+          id: string
+          user_id: string
+          credits: number
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          credits?: number
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          credits?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_credits_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      },
     }
     Views: {
       [_ in never]: never

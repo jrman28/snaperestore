@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
-import { MobileHeader } from '@/components/MobileHeader';
-import { DesktopHeader } from '@/components/DesktopHeader';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { Header } from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +11,6 @@ import { ShoppingCart, User, Mail, Calendar, Image, Download, Trash2 } from 'luc
 import { useToast } from '@/hooks/use-toast';
 
 const Profile = () => {
-  const isMobile = useIsMobile();
   const { toast } = useToast();
 
   const handleUpdateProfile = () => {
@@ -178,23 +174,12 @@ const Profile = () => {
     </div>
   );
 
-  if (isMobile) {
-    return (
-      <div className="min-h-screen flex flex-col bg-gray-50">
-        <MobileHeader />
-        <div className="flex-1 p-4 sm:p-6 lg:p-8">
-          {profileContent}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-gray-50">
         <AppSidebar />
         <main className="flex-1 flex flex-col">
-          <DesktopHeader />
+          <Header variant="dashboard" />
           <div className="flex-1 p-8">
             {profileContent}
           </div>
